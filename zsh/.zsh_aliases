@@ -2,6 +2,7 @@
 alias lg=lazygit
 
 alias n=nvim
+alias c=clear
 
 # fzf fuzzy finding stuff
 alias ff='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'

@@ -1,6 +1,7 @@
 -- Some basic keymaps
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('i', 'jj', '<Esc>')
+vim.keymap.set('n', 'W', '<CMD>w<CR>', { desc = "Save File" })
 
 -- Diagnostic keymaps
 -- vim.keymap.set('n', '<leader>Q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
