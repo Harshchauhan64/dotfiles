@@ -1,20 +1,20 @@
 return {
   'stevearc/conform.nvim',
-  event = { 'bufwritepre' },
+  event = { 'bufwritepre', 'bufReadPost' },
   cmd = { 'Conforminfo' },
   -- This Keymap is not the best imo and also there is keymap in lsp that does this so yah.
   keys = {
     {
-      '<leader>f',
+      '<leader>fm',
       function()
         require('conform').format { async = true, lsp_fallback = true }
       end,
-      mode = '',
+      mode = { 'n', 'v' },
       desc = '[F]ormat buffer',
     },
   },
   opts = {
-    notify_on_error = false,
+    notify_on_error = true,
     format_on_save = function(bufnr)
       local disable_filetypes = { c = true, cpp = true }
       return {
