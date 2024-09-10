@@ -45,10 +45,10 @@ return {
         },
       })
 
-      -- -- Python
-      -- lspconfig.pyright.setup({
-      --   capabilities = capabilities,
-      -- })
+      -- Python
+      lspconfig.basedpyright.setup({
+        capabilities = capabilities,
+      })
 
       -- Go
       lspconfig.gopls.setup({
@@ -57,6 +57,11 @@ return {
 
       -- Zig
       lspconfig.zls.setup({
+        capabilities = capabilities,
+      })
+
+      -- Marksman
+      lspconfig.marksman.setup({
         capabilities = capabilities,
       })
 

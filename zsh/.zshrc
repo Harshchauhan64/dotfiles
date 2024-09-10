@@ -8,7 +8,7 @@ fi
 
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-export TERM=screen-256color
+export TERM=tmux-256color
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -50,3 +50,11 @@ eval "$(zoxide init --cmd cd zsh)"
 bindkey -e
 
 source ~/.zsh_aliases
+
+fzh() {
+  local selected_command
+  selected_command=$(history | fzf -tac --height 40% --reverse --query="$LBUFFER" | sed 's/^[ ]*[0-9]\+[ ]*//')
+  if [ -n "$selected_command" ]; then
+    eval "$selected_command"
+  fi
+}
