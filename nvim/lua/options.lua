@@ -10,7 +10,7 @@ vim.opt.softtabstop = 2
 -- Set the number of spaces used for each level of indentation
 vim.opt.shiftwidth = 2
 -- Terminal color correction
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 -- Set number line
 vim.opt.number = true
 vim.opt.relativenumber = true

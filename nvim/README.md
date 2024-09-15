@@ -7,7 +7,7 @@
     - Still there is alot of things I don't really know about and alot of things that in my config still makes less sense due to incomplete knowledge.
  - [X]  Auto Complete ( This was also hard but not that much and I need to know how everything is connected and works seamlessly)
 - [ ] Ai Stuff
-- [ ] Markdown and note-taking
+- [X] Markdown and note-taking
 - [ ] Debugger
 - The things I have noticed that startup time is gone up by alot and that's obvious at this point with alot of plugins running. I have to decide what to lazy load.
 ## Miscellanous stuff remaining like 

@@ -7,7 +7,9 @@ return {
     {
       '<leader>fm',
       function()
-        require('conform').format { async = true, lsp_fallback = true }
+        require('conform').format {
+          async = true,
+          lsp_fallback = true }
       end,
       mode = { 'n', 'v' },
       desc = '[F]ormat buffer',
@@ -25,9 +27,10 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       python = { 'isort', 'black' },
+      go = { 'gofmt', 'goimports' },
+      markdown = { 'prettierd' },
       --- javascript = { 'prettierd', 'prettier' },
       -- typescript = { 'prettierd', 'prettier' },
-      go = { 'gofmt', 'goimports' },
       -- rust = { 'rustfmt' },
       -- Add more languages and formatters as needed
     },
