@@ -1,15 +1,15 @@
 return {
   {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-ui-select.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     config = function()
-      local telescope = require('telescope')
-      local actions = require('telescope.actions')
+      local telescope = require("telescope")
+      local actions = require("telescope.actions")
 
       telescope.setup({
         defaults = {
@@ -23,8 +23,8 @@ return {
       })
 
       -- Enable telescope fzf native, if installed
-      pcall(telescope.load_extension, 'fzf')
-      pcall(telescope.load_extension, 'ui-select')
+      pcall(telescope.load_extension, "fzf")
+      pcall(telescope.load_extension, "ui-select")
     end,
-  }
+  },
 }

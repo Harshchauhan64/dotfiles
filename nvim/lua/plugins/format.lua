@@ -1,18 +1,19 @@
 return {
-  'stevearc/conform.nvim',
-  event = { 'bufwritepre', 'bufReadPost' },
-  cmd = { 'Conforminfo' },
+  "stevearc/conform.nvim",
+  event = { "bufwritepre", "bufReadPost" },
+  cmd = { "Conforminfo" },
   -- This Keymap is not the best imo and also there is keymap in lsp that does this so yah.
   keys = {
     {
-      '<leader>fm',
+      "<leader>fm",
       function()
-        require('conform').format {
+        require("conform").format({
           async = true,
-          lsp_fallback = true }
+          lsp_fallback = true,
+        })
       end,
-      mode = { 'n', 'v' },
-      desc = '[F]ormat buffer',
+      mode = { "n", "v" },
+      desc = "[F]ormat buffer",
     },
   },
   opts = {
@@ -25,10 +26,10 @@ return {
       }
     end,
     formatters_by_ft = {
-      lua = { 'stylua' },
-      python = { 'isort', 'black' },
-      go = { 'gofmt', 'goimports' },
-      markdown = { 'prettierd' },
+      lua = { "stylua" },
+      python = { "isort", "black" },
+      go = { "gofmt", "goimports" },
+      markdown = { "prettierd" },
       --- javascript = { 'prettierd', 'prettier' },
       -- typescript = { 'prettierd', 'prettier' },
       -- rust = { 'rustfmt' },
@@ -37,13 +38,13 @@ return {
     -- Format options for specific formatters
     formatters = {
       stylua = {
-        prepend_args = { '--indent-type', 'Spaces', '--indent-width', '2' },
+        prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
       },
       black = {
-        prepend_args = { '--line-length', '100' },
+        prepend_args = { "--line-length", "100" },
       },
-      prettier = {
-        prepend_args = { '--print-width', '100', '--single-quote' },
+      prettierd = {
+        prepend_args = { "--print-width", "100", "--single-quote" },
       },
     },
   },

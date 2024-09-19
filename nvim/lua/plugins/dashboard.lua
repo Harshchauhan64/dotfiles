@@ -62,14 +62,13 @@ return {
         "⠈⡈⡀⠀⠁⡈⠚⣿⣉⣓⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⠾⠃⣯⠀⡀⠀",
         "⠀⢳⣤⡀⠀⢰⠀⠻⣿⡿⠀⠀⠀⠀⠀⠀⠀⢀⠀⢠⠎⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣳⠆⢱⡇⠘⣄",
         "⠀⠈⠿⠹⠆⢀⡆⠈⠁⡇⠀⠀⠀⠀⠀⠀⡞⠃⣿⡏⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠻⢠⠀⡇⡀⢚",
-      }
+      },
     }
 
     local function random_ascii()
       return headers[math.random(#headers)]
     end
     dashboard.section.header.val = random_ascii()
-
 
     -- Set menu
     dashboard.section.buttons.val = {
@@ -88,7 +87,6 @@ return {
       local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
 
       local total_plugins = stats.count
-
 
       -- Construct footer string
       return string.format("⚡ Neovim loaded %d plugins in %.2fms  ", total_plugins, ms)

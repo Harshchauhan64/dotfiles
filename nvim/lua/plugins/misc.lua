@@ -1,10 +1,10 @@
 return {
-  { 'tpope/vim-sleuth' }, -- Detect tabstop and shiftwidth automatically
-  { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font, opts = true },
+  { "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
+  { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font, opts = true },
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {}
+    opts = {},
   },
   {
     "christoomey/vim-tmux-navigator",
@@ -16,10 +16,10 @@ return {
       "TmuxNavigatePrevious",
     },
     keys = {
-      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
@@ -68,27 +68,27 @@ return {
       require("nvim-surround").setup({
         -- Configuration here, or leave empty to use defaults
       })
-    end
+    end,
   },
   {
-    'windwp/nvim-autopairs',
+    "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {
       check_ts = true,
       ts_config = {
-        lua = { 'string' }, -- it will not add a pair on that treesitter node
-        javascript = { 'template_string' },
+        lua = { "string" }, -- it will not add a pair on that treesitter node
+        javascript = { "template_string" },
       },
       disable_filetype = { "TelescopePrompt" },
       fast_wrap = {
-        map = '<M-e>',
-        chars = { '{', '[', '(', '"', "'" },
+        map = "<M-e>",
+        chars = { "{", "[", "(", '"', "'" },
         pattern = [=[[%'%"%)%>%]%)%}%,]]=],
-        end_key = '$',
-        keys = 'qwertyuiopzxcvbnmasdfghjkl',
+        end_key = "$",
+        keys = "qwertyuiopzxcvbnmasdfghjkl",
         check_comma = true,
-        highlight = 'Search',
-        highlight_grey = 'Comment'
+        highlight = "Search",
+        highlight_grey = "Comment",
       },
     },
     config = function(_, opts)
@@ -96,12 +96,9 @@ return {
       npairs.setup(opts)
 
       -- If you want to automatically add `(` after selecting a function or method
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      local cmp = require('cmp')
-      cmp.event:on(
-        'confirm_done',
-        cmp_autopairs.on_confirm_done()
-      )
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      local cmp = require("cmp")
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
   {
@@ -110,7 +107,7 @@ return {
     priority = 1000,
     config = function()
       -- Set colorscheme
-      vim.cmd.colorscheme 'catppuccin-mocha'
-    end
-  }
+      vim.cmd.colorscheme("catppuccin-mocha")
+    end,
+  },
 }

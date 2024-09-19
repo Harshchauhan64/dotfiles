@@ -1,5 +1,5 @@
 return {
-  'stevearc/oil.nvim',
+  "stevearc/oil.nvim",
   opts = {},
   config = function()
     require("oil").setup({
@@ -11,11 +11,11 @@ return {
         --"permissions", "size","mtime",
       },
       view_options = {
-       show_hidden = true,
-       natural_order = true,
-        is_always_hidden = function(name,_)
-      return name == '..' or name == '.git'
-    end,
+        show_hidden = true,
+        natural_order = true,
+        is_always_hidden = function(name, _)
+          return name == ".." or name == ".git"
+        end,
       },
       -- Use - to toggle oil
       keymaps = {
@@ -25,5 +25,5 @@ return {
       },
       -- You can add more options here
     })
-  end
+  end,
 }
