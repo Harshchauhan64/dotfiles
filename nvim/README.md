@@ -14,3 +14,5 @@
 Some good plugins which greatly improves exp.
 And Terminal and test plugins for easy testing.
 I will try to write the assignment of this semester here will see how it goes as I already have most of things configured and ready to roll.
+### Plugins I want to try out:
+- [Drop](https://github.com/folke/drop.nvim) 
