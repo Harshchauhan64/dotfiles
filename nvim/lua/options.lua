@@ -62,6 +62,10 @@ vim.opt.timeoutlen = 300
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
+-- Disable some providers
+for _, provider in ipairs({ "perl", "ruby" }) do
+  vim.g["loaded_" .. provider .. "_provider"] = 0
+end
 -- Highlight when yanking text
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
