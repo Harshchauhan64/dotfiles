@@ -110,4 +110,30 @@ return {
       vim.cmd.colorscheme("catppuccin-mocha")
     end,
   },
+  {
+    "rcarriga/nvim-notify",
+    keys = {
+      {
+        "<leader>nn",
+        function()
+          require("notify").dismiss({ silent = true, pending = true })
+        end,
+        desc = "Dismiss All Notifications",
+      },
+    },
+    config = function()
+      vim.notify = require("notify")
+    end,
+  },
+  -- lazy.nvim
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+  },
 }

@@ -7,7 +7,7 @@ vim.keymap.set("n", "W", "<CMD>w<CR>", { desc = "Save File" })
 -- vim.keymap.set('n', '<leader>Q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Open file Explorer (oil is the way!)
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
 -- telescope Keymaps
 vim.api.nvim_set_keymap("n", "<leader>st", ":TodoTelescope<CR>", { noremap = true, desc = "[S]earch [T]odo" })
 vim.keymap.set("n", "<leader>sh", function()
@@ -44,7 +44,6 @@ vim.keymap.set("n", "<leader><leader>", function()
   require("telescope.builtin").buffers()
 end, { desc = "[ ] Find existing buffers" })
 
--- TODO: comments should also have fuzzy finder for anything like todos, bugs, errors, etc.
 vim.api.nvim_set_keymap("n", "st", ":TodoTelescope<CR>", { noremap = true })
 --  Use CTRL+<hjkl> to switch between windows
 --  See `:help wincmd` for a list of all window commands
