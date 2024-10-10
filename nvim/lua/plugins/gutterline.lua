@@ -1,27 +1,8 @@
+-- TODO: modify this file for all the Ui elements.
+-- Add which key and move themes here
 return {
   "nvim-lualine/lualine.nvim",
   config = function()
-    -- local function lsp_diagnostics()
-    --   local counts = { errors = 0, warnings = 0, info = 0, hints = 0 }
-    --   local levels = {
-    --     errors = vim.diagnostic.severity.ERROR,
-    --     warnings = vim.diagnostic.severity.WARN,
-    --     info = vim.diagnostic.severity.INFO,
-    --     hints = vim.diagnostic.severity.HINT,
-    --   }
-    --   for k, level in pairs(levels) do
-    --     counts[k] = #vim.diagnostic.get(0, { severity = level })
-    --   end
-    --   local icons = { errors = " ", warnings = " ", info = " ", hints = " " }
-    --   local parts = {}
-    --   for k, icon in pairs(icons) do
-    --     if counts[k] > 0 then
-    --       table.insert(parts, icon .. counts[k])
-    --     end
-    --   end
-    --   return table.concat(parts, " ")
-    -- end
-
     local function oil_status()
       if vim.bo.filetype == "oil" then
         return "Oil"
@@ -49,21 +30,6 @@ return {
         return "Mason"
       end
       return ""
-    end
-
-    local function abbreviated_mode()
-      local mode_map = {
-        ["n"] = "N",
-        ["i"] = "I",
-        ["v"] = "V",
-        ["V"] = "VL",
-        ["\22"] = "VB",
-        ["c"] = "C",
-        ["R"] = "R",
-        ["t"] = "T",
-        ["s"] = "S",
-      }
-      return mode_map[vim.api.nvim_get_mode().mode] or vim.api.nvim_get_mode().mode:upper()
     end
 
     local function lsp_client_names()

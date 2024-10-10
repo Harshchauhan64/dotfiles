@@ -19,7 +19,7 @@ return {
   opts = {
     notify_on_error = true,
     format_on_save = function(bufnr)
-      local disable_filetypes = {}
+      local disable_filetypes = { "markdown" }
       return {
         timeout_ms = 500,
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
@@ -29,7 +29,8 @@ return {
       lua = { "stylua" },
       python = { "isort", "black" },
       go = { "gofmt", "goimports" },
-      markdown = { "prettierd" },
+      cpp = { "clang-format" },
+      -- markdown = { "prettierd" },
       --- javascript = { 'prettierd', 'prettier' },
       -- typescript = { 'prettierd', 'prettier' },
       -- rust = { 'rustfmt' },
@@ -45,6 +46,9 @@ return {
       },
       prettierd = {
         prepend_args = { "--print-width", "100", "--single-quote" },
+      },
+      ["clang-format"] = {
+        prepend_args = { "--style=file" },
       },
     },
   },

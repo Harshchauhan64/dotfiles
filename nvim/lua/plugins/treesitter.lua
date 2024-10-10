@@ -9,6 +9,7 @@ return {
         "html",
         "lua",
         "vim",
+        "regex",
         "vimdoc",
         "go",
         "zig",

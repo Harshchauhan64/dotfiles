@@ -15,6 +15,10 @@ return {
         ensure_installed = {
           "gopls",
           "zls",
+          "pyright",
+          "lua_ls",
+          "marksman",
+          "clangd",
         },
       })
 
@@ -53,6 +57,24 @@ return {
       -- Go
       lspconfig.gopls.setup({
         capabilities = capabilities,
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+            gofumpt = true,
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+          },
+        },
       })
 
       -- Zig
@@ -63,6 +85,30 @@ return {
       -- Marksman
       lspconfig.marksman.setup({
         capabilities = capabilities,
+      })
+
+      -- clangd
+      lspconfig.clangd.setup({
+        capabilities = capabilities,
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--suggest-missing-includes",
+          "--clang-tidy",
+          "--header-insertion=iwyu",
+        },
+      })
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = "●",
+        },
+        float = {
+          border = "rounded",
+        },
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
       })
 
       -- Global mappings.

@@ -2,6 +2,7 @@
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "W", "<CMD>w<CR>", { desc = "Save File" })
+vim.keymap.set("n", "YY", "<cmd>%y+<CR>", { desc = "General Copy whole file" })
 
 -- Diagnostic keymaps
 -- vim.keymap.set('n', '<leader>Q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -43,6 +44,8 @@ end, { desc = "[S]earch [O]pened Recent Files " })
 vim.keymap.set("n", "<leader><leader>", function()
   require("telescope.builtin").buffers()
 end, { desc = "[ ] Find existing buffers" })
+vim.keymap.set("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
+vim.keymap.set("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
 
 vim.api.nvim_set_keymap("n", "st", ":TodoTelescope<CR>", { noremap = true })
 --  Use CTRL+<hjkl> to switch between windows

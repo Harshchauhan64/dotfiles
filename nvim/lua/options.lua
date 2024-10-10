@@ -51,9 +51,9 @@ vim.opt.updatetime = 250
 vim.opt.cursorline = true
 -- Set colorscheme
 --vim.cmd.colorscheme 'catppuccin-mocha'
+-- Moved to gutterline for now
 -- Disable Default providers
 vim.g.loaded_node_provider = 0
-vim.g.loaded_python3_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 -- Decrease mapped sequence time

@@ -28,11 +28,11 @@ return {
       float = {
         padding = 2,
         max_width = 90,
-        -- max_height = 0,
-        -- border = "rounded",
-        -- win_options = {
-        --   winblend = 10,
-        --   },
+        max_height = 0,
+        border = "rounded",
+        win_options = {
+          winblend = 10,
+        },
       },
       -- You can add more options here
     })
