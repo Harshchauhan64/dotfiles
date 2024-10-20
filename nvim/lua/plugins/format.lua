@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  lazy = true,
   event = { "bufwritepre", "bufReadPost" },
   cmd = { "Conforminfo" },
   -- This Keymap is not the best imo and also there is keymap in lsp that does this so yah.

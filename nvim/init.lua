@@ -7,7 +7,7 @@ require("config.lazy")
 
 -- Load plugin-specific configurations
 require("plugins.misc")
-require("plugins.gutterline")
+require("plugins.ui")
 require("plugins.dashboard")
 require("plugins.telescope")
 require("plugins.treesitter")

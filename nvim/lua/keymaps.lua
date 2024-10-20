@@ -2,7 +2,8 @@
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "W", "<CMD>w<CR>", { desc = "Save File" })
-vim.keymap.set("n", "YY", "<cmd>%y+<CR>", { desc = "General Copy whole file" })
+vim.keymap.set("n", "YY", "<cmd>%y+<CR>", { desc = "Copy whole file" })
+vim.keymap.set("n", "QQ", "<cmd>wqa<CR>", { desc = "Save Everything and quit" })
 
 -- Diagnostic keymaps
 -- vim.keymap.set('n', '<leader>Q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -67,4 +68,4 @@ vim.keymap.set("i", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set("i", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
 -- Miscellaneous Keymaps
-vim.api.nvim_set_keymap("n", "yinq", 'yi"', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "yinq", 'yi"', { noremap = true, silent = true, desc = "Yank in [q]uotes" })

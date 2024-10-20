@@ -1,15 +1,16 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
+  event = { "BufReadPost", "BufNewFile" },
   config = function()
     local configs = require("nvim-treesitter.configs")
-
     configs.setup({
       ensure_installed = {
         "html",
         "lua",
         "vim",
         "regex",
+        "dockerfile",
         "vimdoc",
         "go",
         "zig",
@@ -21,6 +22,7 @@ return {
       sync_install = false,
       highlight = { enable = true },
       indent = { enable = true },
+      matchup = { enable = true },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -35,7 +37,6 @@ return {
           enable = true,
           lookahead = true,
           keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
             ["af"] = "@function.outer",
             ["if"] = "@function.inner",
             ["ac"] = "@class.outer",

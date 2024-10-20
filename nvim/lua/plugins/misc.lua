@@ -1,5 +1,35 @@
 return {
+  {
+    "gbprod/substitute.nvim",
+    keys = {
+      { "s", desc = "Substitute operator" },
+      { "ss", desc = "Substitute line" },
+      { "S", desc = "Substitute to end of line" },
+      { "sx", desc = "Exchange operator" },
+      { "sxx", desc = "Exchange line" },
+      { "sxc", desc = "Cancel exchange" },
+    },
+    config = function()
+      local substitute = require("substitute")
+      local exchange = require("substitute.exchange")
+
+      substitute.setup({})
+      vim.keymap.set("n", "s", substitute.operator, { noremap = true, desc = "Substitute operator" })
+      vim.keymap.set("n", "ss", substitute.line, { noremap = true, desc = "Substitute line" })
+      vim.keymap.set("n", "S", substitute.eol, { noremap = true, desc = "Substitute to end of line" })
+      vim.keymap.set("x", "s", substitute.visual, { noremap = true, desc = "Substitute visual selection" })
+      vim.keymap.set("n", "sx", exchange.operator, { noremap = true, desc = "Exchange operator" })
+      vim.keymap.set("n", "sxx", exchange.line, { noremap = true, desc = "Exchange line" })
+      vim.keymap.set("x", "X", exchange.visual, { noremap = true, desc = "Exchange visual selection" })
+      vim.keymap.set("n", "sxc", exchange.cancel, { noremap = true, desc = "Cancel exchange" })
+    end,
+  },
+  { "wakatime/vim-wakatime", lazy = false },
   { "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
+  {
+    "andymass/vim-matchup",
+    event = "VimEnter",
+  },
   { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font, opts = true },
   {
     "folke/todo-comments.nvim",
@@ -8,6 +38,7 @@ return {
   },
   {
     "christoomey/vim-tmux-navigator",
+    event = "VeryLazy",
     cmd = {
       "TmuxNavigateLeft",
       "TmuxNavigateDown",
@@ -100,59 +131,5 @@ return {
       local cmp = require("cmp")
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      -- Set colorscheme
-      vim.cmd.colorscheme("catppuccin-mocha")
-    end,
-  },
-  {
-    "rcarriga/nvim-notify",
-    keys = {
-      {
-        "<leader>nn",
-        function()
-          require("notify").dismiss({ silent = true, pending = true })
-        end,
-        desc = "Dismiss All Notifications",
-      },
-    },
-    config = function()
-      local notify = require("notify")
-      notify.setup({
-        render = "minimal",
-        stages = "fade",
-      })
-    end,
-  },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      require("noice").setup({
-        lsp = {
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
-          },
-        },
-        -- you can enable a preset for easier configuration
-        presets = {
-          bottom_search = false, -- use a classic bottom cmdline for search
-          command_palette = true, -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false, -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false, -- add a border to hover docs and signature help
-        },
-      }),
-    },
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    },
   },
 }

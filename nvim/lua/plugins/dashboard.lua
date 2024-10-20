@@ -75,7 +75,7 @@ return {
       dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
       dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
       dashboard.button("r", "  Recent files", ":Telescope oldfiles<CR>"),
-      dashboard.button("o", "  Oil", ":Oil<CR>"),
+      dashboard.button("o", "  Oil", ":Oil --float<CR>"),
       dashboard.button("s", "  Settings", ":e $MYVIMRC<CR>"),
       dashboard.button("l", "  Lazy", ":Lazy<CR>"),
       dashboard.button("q", "  Quit", ":qa<CR>"),

@@ -22,7 +22,9 @@ return {
       -- Use - to toggle oil
       keymaps = {
         ["\\"] = "actions.close",
+        ["q"] = "actions.close",
         ["<C-h>"] = false,
+        ["<C-l>"] = false,
       },
       -- Floating window configuration
       float = {
@@ -34,15 +36,6 @@ return {
           winblend = 10,
         },
       },
-      -- You can add more options here
     })
-
-    -- Function to open Oil in a floating window
-    local function oil_float()
-      oil.open_float()
-    end
-
-    -- Set up a keymap to open the floating Oil window
-    vim.keymap.set("n", "-", oil_float, { desc = "Open Oil in float" })
   end,
 }

@@ -1,18 +1,27 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "L3MON4D3/LuaSnip",
+      {
+        "L3MON4D3/LuaSnip",
+        dependencies = { "rafamadriz/friendly-snippets" },
+        config = function()
+          -- Lazy load friendly snippets
+          require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+      },
       "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
+      local docs_closed_by_user = false
       local toggle_docs = function()
         if cmp.visible_docs() then
           cmp.close_docs()
@@ -70,7 +79,7 @@ return {
         experimental = { ghost_text = true },
         view = {
           docs = {
-            auto_open = false,
+            auto_open = true,
           },
         },
         event_handlers = {

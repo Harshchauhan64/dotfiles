@@ -1,11 +1,12 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
-      "folke/neodev.nvim", -- Adds extra Neovim Lua API completion
+      { "folke/neodev.nvim", opts = {} }, -- Adds extra Neovim Lua API completion
     },
     config = function()
       -- Set up Mason to automatically install LSP servers
@@ -49,6 +50,11 @@ return {
         },
       })
 
+      -- DockerLS
+      lspconfig.dockerls.setup({
+        capabilities = capabilities,
+        filetypes = { "dockerfile" },
+      })
       -- Python
       lspconfig.pyright.setup({
         capabilities = capabilities,
@@ -144,6 +150,13 @@ return {
           vim.keymap.set("n", "<space>f", function()
             vim.lsp.buf.format({ async = true })
           end, opts)
+        end,
+      })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "dockerfile", "docker-compose.yml" },
+        callback = function()
+          vim.keymap.set("n", "<leader>dr", ":!docker run", { buffer = true, desc = "Docker Run" })
+          vim.keymap.set("n", "<leader>db", ":!docker build -t myimage .", { buffer = true, desc = "Docker Build" })
         end,
       })
     end,

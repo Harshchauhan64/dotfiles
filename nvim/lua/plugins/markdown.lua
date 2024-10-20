@@ -1,7 +1,7 @@
 return {
   "OXY2DEV/markview.nvim",
   lazy = false, -- Recommended
-  -- ft = "markdown" -- If you decide to lazy-load anyway
+  ft = "markdown", -- If you decide to lazy-load anyway
   config = function()
     -- local markview = require("markview")
     -- local presets = require("markview.presets")

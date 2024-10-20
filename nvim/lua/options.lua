@@ -25,6 +25,8 @@ vim.opt.smartcase = true
 vim.opt.mouse = "a"
 -- disable mode show its in status line
 vim.opt.showmode = false
+-- Show match brackets
+vim.opt.showmatch = true
 -- Set nerd font on
 vim.g.have_nerd_font = true
 -- Configure how new splits should be opened
