@@ -1,10 +1,20 @@
 return {
   {
+    "ellisonleao/gruvbox.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    -- priority = 1000,
+    -- config = function()
+    --   -- Set colorscheme
+    --   vim.cmd.colorscheme("gruvbox")
+    -- end,
+  },
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
     config = function()
-      -- Set colorscheme
+      -- set colorscheme
       vim.cmd.colorscheme("catppuccin-mocha")
     end,
   },
@@ -57,16 +67,13 @@ return {
   -- Lua
   {
     "folke/zen-mode.nvim", -- TODO : Check the docs of zen mode
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
+    cmd = "ZenMode",
+    opts = {},
   },
 
   {
     "tris203/precognition.nvim",
-    --event = "VeryLazy", -- PERF : Lazyload ?
+    event = "VeryLazy", -- PERF : Lazyload ?
     opts = {
       -- startVisible = true,
       -- showBlankVirtLine = true,
@@ -127,7 +134,7 @@ return {
       end
 
       local function lsp_client_names()
-        local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
         if #clients == 0 then
           return "No LSP"
         end
@@ -145,8 +152,8 @@ return {
           section_separators = { left = "", right = "" },
           globalstatus = true,
           disabled_filetypes = {
-            statusline = { "dashboard", "alpha", "TelescopePrompt" },
-            winbar = { "dashboard", "alpha", "TelescopePrompt" },
+            statusline = { "dashboard", "alpha", "TelescopePrompt", "lazy" },
+            winbar = { "dashboard", "alpha", "TelescopePrompt", "lazy" },
           },
         },
         sections = {
@@ -200,7 +207,11 @@ return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      delay = function(ctx)
+        return ctx.plugin and 400 or 800
+      end,
+    },
     keys = {
       {
         "<leader>?",
@@ -211,4 +222,75 @@ return {
       },
     },
   },
+  --- NOTE : SUPER TEMPORARY I CAN REMOVE IT ANY TIME
+  -- {
+  --   "akinsho/bufferline.nvim",
+  --   event = "VeryLazy",
+  --   keys = {
+  --     { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
+  --     { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
+  --     { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+  --     { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+  --     { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+  --     { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+  --   },
+  --   opts = {
+  --     options = {
+  --       mode = "buffers",
+  --       diagnostics = "nvim_lsp",
+  --       diagnostics_indicator = function(count, level)
+  --         local icon = level:match("error") and " " or " "
+  --         return " " .. icon .. count
+  --       end,
+  --       -- Configure as per catppuccin theme since you're using it
+  --       themable = true,
+  --       separator_style = "thin",
+  --       show_buffer_close_icons = true,
+  --       show_close_icon = false,
+  --       color_icons = true,
+  --       -- Show LSP and file icons
+  --       get_element_icon = function(element)
+  --         local icon, hl = require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
+  --         return icon, hl
+  --       end,
+  --       -- Custom indicators
+  --       indicators = {
+  --         modified = "●",
+  --         pinned = "車",
+  --       },
+  --       -- Group configuration
+  --       groups = {
+  --         options = {
+  --           toggle_hidden_on_enter = true,
+  --         },
+  --         items = {
+  --           {
+  --             name = "Tests",
+  --             priority = 2,
+  --             icon = "",
+  --             matcher = function(buf)
+  --               return buf.filename:match("_test") or buf.filename:match("test_")
+  --             end,
+  --           },
+  --           {
+  --             name = "Docs",
+  --             priority = 3,
+  --             icon = "",
+  --             matcher = function(buf)
+  --               return buf.filename:match("%.md") or buf.filename:match("%.txt")
+  --             end,
+  --           },
+  --         },
+  --       },
+  --       -- Hide certain filetypes from bufferline
+  --       custom_filter = function(buf_number, _)
+  --         local exclude_ft = { "qf", "fugitive", "git", "oil" }
+  --         local ft = vim.bo[buf_number].filetype
+  --         return not vim.tbl_contains(exclude_ft, ft)
+  --       end,
+  --     },
+  --     -- Match with your catppuccin theme
+  --     -- highlights = require("catppuccin.groups.integrations.bufferline").get(),
+  --   },
+  -- },
 }

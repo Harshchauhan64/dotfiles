@@ -12,8 +12,7 @@ return {
         "L3MON4D3/LuaSnip",
         dependencies = { "rafamadriz/friendly-snippets" },
         config = function()
-          -- Lazy load friendly snippets
-          require("luasnip.loaders.from_vscode").lazy_load()
+          require("luasnip.loaders.from_vscode").lazy_load() -- PERF: lazy_loading the snips
         end,
       },
       "saadparwaiz1/cmp_luasnip",
@@ -21,7 +20,7 @@ return {
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-      local docs_closed_by_user = false
+      local docs_closed_by_user = true
       local toggle_docs = function()
         if cmp.visible_docs() then
           cmp.close_docs()
@@ -46,6 +45,10 @@ return {
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+          }),
+          ["<C-y>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           }),

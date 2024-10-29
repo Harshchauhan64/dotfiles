@@ -58,6 +58,8 @@ vim.opt.cursorline = true
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+-- Nvchad base cache
+-- vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
 -- Decrease mapped sequence time
 vim.opt.timeoutlen = 300
 -- Schedule and sync the clipboard with Neovim

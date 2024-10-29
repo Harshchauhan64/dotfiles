@@ -1,8 +1,8 @@
 return {
   "stevearc/conform.nvim",
   lazy = true,
-  event = { "bufwritepre", "bufReadPost" },
-  cmd = { "Conforminfo" },
+  event = { "BufWritePre", "BufReadPost" },
+  cmd = { "ConformInfo" },
   -- This Keymap is not the best imo and also there is keymap in lsp that does this so yah.
   keys = {
     {
@@ -31,6 +31,7 @@ return {
       python = { "isort", "black" },
       go = { "gofmt", "goimports" },
       cpp = { "clang-format" },
+      json = { "jq", "prettierd" },
       -- markdown = { "prettierd" },
       --- javascript = { 'prettierd', 'prettier' },
       -- typescript = { 'prettierd', 'prettier' },
@@ -39,6 +40,9 @@ return {
     },
     -- Format options for specific formatters
     formatters = {
+      jq = { -- json related
+        prepend_args = { "--indent", "2" },
+      },
       stylua = {
         prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
       },

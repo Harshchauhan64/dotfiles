@@ -1,4 +1,4 @@
--- Load core configurations
+-- Load core confisurations
 require("options")
 require("keymaps")
 
