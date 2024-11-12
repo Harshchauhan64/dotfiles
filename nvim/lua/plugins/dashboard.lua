@@ -75,9 +75,14 @@ return {
       --   "⠀⠈⠿⠹⠆⢀⡆⠈⠁⡇⠀⠀⠀⠀⠀⠀⡞⠃⣿⡏⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠻⢠⠀⡇⡀⢚",
       -- },
     }
-
+    -- ascii art for the fonts - https://patorjk.com/software/taag/#p=display&v=0&f=ANSI%20Shadow&t=
+    math.randomseed(os.time())
     local function random_ascii()
-      return headers[math.random(#headers)]
+      if not headers or #headers == 0 then
+        return nil
+      end
+      local index = math.random(#headers)
+      return headers[index]
     end
     dashboard.section.header.val = random_ascii()
 
@@ -88,10 +93,10 @@ return {
       dashboard.button("w", "  Word from files", ":Telescope live_grep<CR>"),
       dashboard.button("c", "󰙨  Leetcode", ":Leet <CR>"),
       dashboard.button("s", "  Settings", ":e $MYVIMRC<CR>"),
-      dashboard.button("l", "󰤄  Lazy", ":Lazy<CR>"),
-      dashboard.button("q", "  Quit", ":qa<CR>"),
+      dashboard.button("l", "󰤄  Lazy", ":Lazy update<CR>"),
+      dashboard.button("q", "󰩈  Quit", ":qa<CR>"),
     }
-
+    --    
     -- Set footer
     local function footer()
       local stats = require("lazy").stats()

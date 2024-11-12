@@ -3,20 +3,21 @@ return {
     "ellisonleao/gruvbox.nvim",
     lazy = true,
     event = "VeryLazy",
-    -- priority = 1000,
-    -- config = function()
-    --   -- Set colorscheme
-    --   vim.cmd.colorscheme("gruvbox")
-    -- end,
+    priority = 1000,
+    config = function()
+      -- Set colorscheme
+      vim.g.gruvbox_sign_column = "none"
+      vim.cmd.colorscheme("gruvbox")
+    end,
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    priority = 1000,
-    config = function()
-      -- set colorscheme
-      vim.cmd.colorscheme("catppuccin-mocha")
-    end,
+    -- priority = 1000,
+    -- config = function()
+    --   -- set colorscheme
+    --   vim.cmd.colorscheme("catppuccin-mocha")
+    -- end,
   },
   {
     "rcarriga/nvim-notify",
@@ -75,7 +76,7 @@ return {
     "tris203/precognition.nvim",
     event = "VeryLazy", -- PERF : Lazyload ?
     opts = {
-      -- startVisible = true,
+      startVisible = false,
       -- showBlankVirtLine = true,
       -- highlightColor = { link = "Comment" },
       -- hints = {
@@ -147,7 +148,8 @@ return {
 
       require("lualine").setup({
         options = {
-          theme = "catppuccin",
+          -- theme = "catppuccin",
+          theme = "gruvbox",
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
           globalstatus = true,

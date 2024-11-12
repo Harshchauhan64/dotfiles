@@ -3,15 +3,26 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "W", "<CMD>w<CR>", { desc = "Save File" })
 vim.keymap.set("n", "YY", "<cmd>%y+<CR>", { desc = "Copy whole file" })
-vim.keymap.set("n", "QQ", "<cmd>wqa<CR>", { desc = "Save Everything and quit" })
-
+vim.keymap.set("n", "QQ", "<cmd>wqa<CR>", { desc = "Save Everything and quit all" })
+vim.keymap.set("n", "Q", "<cmd>wq<CR>", { desc = "Save and quit" })
+-- Centering the view while moving half page up/down
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 -- Diagnostic keymaps
 -- vim.keymap.set('n', '<leader>Q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Open file Explorer (oil is the way!)
 vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
+--Update all plugins with lazy with single keystroke
+vim.keymap.set("n", "<leader>up", "<CMD>Lazy update<CR>", { desc = "Update plugins Lazy" })
 -- telescope Keymaps
 vim.api.nvim_set_keymap("n", "<leader>st", ":TodoTelescope<CR>", { noremap = true, desc = "[S]earch [T]odo" })
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>ta",
+  "<cmd>TodoTelescope keywords=PERF,HACK,TODO,NOTE,FIX<cr>",
+  { noremap = true, desc = "[T]odo [A]ll" }
+)
 vim.keymap.set("n", "<leader>sh", function()
   require("telescope.builtin").help_tags()
 end, { desc = "[S]earch [H]elp" })

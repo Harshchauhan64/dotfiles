@@ -44,7 +44,7 @@ vim.opt.timeoutlen = 300
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
 -- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes:1"
 -- Show the modes turn this off when lualine or statusline is config
 vim.opt.showmode = false
 -- Decrease update time
@@ -52,14 +52,12 @@ vim.opt.updatetime = 250
 -- show which cursor line you are
 vim.opt.cursorline = true
 -- Set colorscheme
---vim.cmd.colorscheme 'catppuccin-mocha'
+--vim.cmd.colorscheme 'catppuccin-mocha' moved too ui.lua
 -- Moved to gutterline for now
 -- Disable Default providers
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
--- Nvchad base cache
--- vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
 -- Decrease mapped sequence time
 vim.opt.timeoutlen = 300
 -- Schedule and sync the clipboard with Neovim

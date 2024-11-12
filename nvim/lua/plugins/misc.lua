@@ -1,4 +1,5 @@
 return {
+  { "meznaric/key-analyzer.nvim", command = "KeyAnalyzer", opts = {} },
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -70,7 +71,7 @@ return {
   { "tpope/vim-sleuth", event = { "BufReadPre", "BufNewFile" } }, -- Detect tabstop and shiftwidth automatically
   {
     "andymass/vim-matchup",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
   },
   { "nvim-tree/nvim-web-devicons", lazy = true, enabled = vim.g.have_nerd_font, opts = true },
   {
@@ -113,6 +114,31 @@ return {
         desc = "Leetcode Change Language",
       },
       {
+        "<leader>ly",
+        "<cmd>Leet yank<cr>",
+        desc = "Leetcode Yank Solution",
+      },
+      {
+        "<leader>li",
+        "<cmd>Leet info<cr>",
+        desc = "Leetcode info question",
+      },
+      {
+        "<leader>lq",
+        "<cmd>Leet exit<cr>",
+        desc = "Leetcode exit",
+      },
+      {
+        "<leader>lp",
+        "<cmd>Leet list<cr>",
+        desc = "Leetcode list",
+      },
+      {
+        "<leader>lm",
+        "<cmd>Leet menu<cr>",
+        desc = "Leetcode Menu",
+      },
+      {
         "<leader>ls",
         "<cmd>Leet submit<cr>",
         desc = "Leetcode Submit",
@@ -132,5 +158,16 @@ return {
   {
     "b0o/schemastore.nvim",
     lazy = true,
+  },
+  {
+    "otavioschwanck/arrow.nvim",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+    },
+    opts = {
+      show_icons = true,
+      leader_key = ";",
+      buffer_leader_key = "m",
+    },
   },
 }
