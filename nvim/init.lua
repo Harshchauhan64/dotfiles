@@ -7,6 +7,7 @@ require("config.lazy")
 
 -- Load plugin-specific configurations
 require("plugins.misc")
+require("plugins.snacks")
 require("plugins.ui")
 require("plugins.dashboard")
 require("plugins.telescope")

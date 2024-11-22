@@ -1,6 +1,6 @@
--- Some basic keymaps
+-- some  basic keymaps
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-vim.keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("x", "<leader>p", '"_dP', { noremap = true, silent = true, desc = "Paste without overwriting yank" })
 vim.keymap.set("n", "W", "<CMD>w<CR>", { desc = "Save File" })
 vim.keymap.set("n", "YY", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 vim.keymap.set("n", "QQ", "<cmd>wqa<CR>", { desc = "Save Everything and quit all" })
@@ -8,6 +8,13 @@ vim.keymap.set("n", "Q", "<cmd>wq<CR>", { desc = "Save and quit" })
 -- Centering the view while moving half page up/down
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+-- Move
+vim.keymap.set(
+  "n",
+  "<leader>r",
+  [[:%s/\<<C-r><C-w>\>//g<Left><Left>]],
+  { desc = "Search and replace the word under the cursor" }
+)
 -- Diagnostic keymaps
 -- vim.keymap.set('n', '<leader>Q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 

@@ -12,7 +12,7 @@
 - [ ] Lazy Loading for better startup time.
 - The things I have noticed that startup time is gone up by alot and that's obvious at this point with alot of plugins running. I have to decide what to lazy load.
 ## Miscellanous stuff remaining like 
-Some good plugins which greatly improves exp.
+some  good plugins which greatly improves exp.
 And Terminal and test plugins for easy testing.
 I will try to write the assignment of this semester here will see how it goes as I already have most of things configured and ready to roll.
  - There is good pair of plugin (twilight and zenmode):

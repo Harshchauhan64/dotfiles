@@ -84,7 +84,7 @@ config.keys = {
     mods = "CTRL",
     action = wezterm.action.ToggleFullScreen,
   },
-  -- CTRL+' clear the window and Viewport I like ctrl L but somethimes it binded to another things
+  -- CTRL+' clear the window and Viewport I like ctrl L but some thimes it binded to another things
   --{
   --key = "'",
   --mods = "CTRL",
