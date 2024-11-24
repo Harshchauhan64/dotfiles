@@ -111,10 +111,16 @@ return {
   -- },
   { "wakatime/vim-wakatime", lazy = false },
   { "tpope/vim-sleuth", event = { "BufReadPre", "BufNewFile" } }, -- Detect tabstop and shiftwidth automatically
-  {
-    "andymass/vim-matchup",
-    -- event = "VeryLazy",
-  },
+  { "andymass/vim-matchup" },
+  -- {
+  --   "kevinhwang91/nvim-hlslens",
+  --   config = function()
+  --     require("hlslens").setup({
+  --       calm_down = true,
+  --       nearest_only = true,
+  --     })
+  --   end,
+  -- },
   { "nvim-tree/nvim-web-devicons", lazy = true, enabled = vim.g.have_nerd_font, opts = true },
   {
     "folke/todo-comments.nvim",

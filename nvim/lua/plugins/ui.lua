@@ -34,7 +34,7 @@ return {
     config = function()
       local notify = require("notify")
       notify.setup({
-        render = "minimal",
+        render = "compact",
         stages = "fade",
       })
     end,
