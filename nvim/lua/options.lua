@@ -52,8 +52,9 @@ vim.opt.updatetime = 250
 -- show which cursor line you are
 vim.opt.cursorline = true
 -- Set colorscheme
+vim.o.background = "dark"
 --vim.cmd.colorscheme 'catppuccin-mocha' moved too ui.lua
--- Moved to gutterline for now
+-- Moved to ui for now
 -- Disable Default providers
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0

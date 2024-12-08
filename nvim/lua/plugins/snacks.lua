@@ -18,8 +18,20 @@ return {
         wo = { wrap = true }, -- Wrap notifications
       },
     },
+    -- Add profiler toggles here
+    -- toggle_mappings = function()
+    --   Snacks.toggle.profiler():map("<leader>pp")
+    --   Snacks.toggle.profiler_highlights():map("<leader>ph")
+    -- end,
   },
   keys = {
+    {
+      "<leader>ps",
+      function()
+        Snacks.profiler.scratch()
+      end,
+      desc = "Profiler Scratch Buffer",
+    },
     {
       "<leader>nn",
       function()
@@ -138,7 +150,6 @@ return {
         end
         vim.print = _G.dd -- Override print to use snacks for `:=` command
 
-        -- Create some toggle mappings
         Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
         Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
         Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
@@ -150,6 +161,8 @@ return {
         Snacks.toggle.treesitter():map("<leader>uT")
         Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
         Snacks.toggle.inlay_hints():map("<leader>uh")
+
+        -- require("folke.snacks").opts.toggle_mappings()
       end,
     })
   end,

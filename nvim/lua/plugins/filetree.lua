@@ -26,7 +26,7 @@ return {
       keymaps = {
         ["\\"] = "actions.close",
         ["q"] = "actions.close",
-        ["V"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
+        ["v"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
         ["<C-CR>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
         -- ["P"] = "actions.preview",
         ["<C-h>"] = false,

@@ -119,6 +119,7 @@ return {
         options = {
           -- theme = "catppuccin",
           theme = "gruvbox",
+          -- theme = "solarized",
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
           globalstatus = true,
