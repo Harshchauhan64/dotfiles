@@ -20,6 +20,9 @@ return {
             },
           },
         },
+        extension = {
+          fzf = {},
+        },
       })
 
       -- Enable telescope fzf native, if installed

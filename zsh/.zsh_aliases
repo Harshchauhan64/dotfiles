@@ -3,6 +3,7 @@ alias lg=lazygit
 alias ld=lazydocker
 
 alias n=nvim
+alias nc='nvim leetcode.nvim' 
 # Never miss clear command
 alias c=clear
 alias cl=clear

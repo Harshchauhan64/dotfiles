@@ -1,3 +1,4 @@
+local leet_arg = "leetcode.nvim"
 return {
   {
     "MagicDuck/grug-far.nvim",
@@ -78,9 +79,9 @@ return {
       npairs.setup(opts)
 
       -- If you want to automatically add `(` after selecting a function or method
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      local cmp = require("cmp")
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      -- local cmp_autopairs = require("nvim-autopairs.completion.blink")
+      --   local cmp = require("cmp")
+      --   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
   --
@@ -148,10 +149,12 @@ return {
   },
   {
     "kawre/leetcode.nvim",
+    lazy = leet_arg ~= vim.fn.argv(0, -1),
     cmd = "Leet",
   -- stylua: ignore
     keys = {
       { "<leader>ll", "<cmd>Leet run<cr>", desc = "Leetcode Run", },
+      { "<leader>ld", "<cmd>Leet desc<cr>", desc = "Leetcode desc close", },
       { "<leader>lc", "<cmd>Leet lang<cr>", desc = "Leetcode Change Language", },
       { "<leader>ly", "<cmd>Leet yank<cr>", desc = "Leetcode Yank Solution", },
       { "<leader>li", "<cmd>Leet info<cr>", desc = "Leetcode info question", },
@@ -161,6 +164,7 @@ return {
       { "<leader>ls", "<cmd>Leet submit<cr>", desc = "Leetcode Submit", },
     },
     opts = {
+      arg = leet_arg,
       lang = "cpp",
       -- image_support = true,
       injector = {
@@ -170,6 +174,15 @@ return {
         },
       },
     },
+  },
+  -- codeforces or CP or cp
+  {
+    "A7lavinraj/assistant.nvim",
+    -- dependencies = { "stevearc/dressing.nvim" }, -- optional but recommended
+    keys = {
+      { "<leader>a", "<cmd>AssistantToggle<cr>", desc = "Toggle Assistant.nvim window" },
+    },
+    opts = {},
   },
   {
     "b0o/schemastore.nvim",

@@ -1,3 +1,48 @@
+local headers = {
+  {
+    "⠀⠀⠀⠀⠀⠀⠀⢀⠀⠔⡀⠀⢀⠞⢰⠂⠀⠀⠀⠀⠀⠀⠀",
+    "⠀⠀⠀⠀⠀⠀⠀⢸⠘⢰⡃⠔⠩⠤⠦⠤⢀⡀⠀⠀⠀⠀⠀",
+    "⠀⠀⠀⢀⠄⢒⠒⠺⠆⠈⠀⠀⢐⣂⠤⠄⡀⠯⠕⣒⣒⡀⠀",
+    "⠀⠀⢐⡡⠔⠁⠆⠀⠀⠀⠀⠀⢀⠠⠙⢆⠀⠈⢁⠋⠥⣀⣀",
+    "⠈⠉⠀⣰⠀⠀⠀⠀⡀⠀⢰⣆⢠⠠⢡⡀⢂⣗⣖⢝⡎⠉⠀",
+    "⢠⡴⠛⡇⠀⠐⠀⡄⣡⢇⠸⢸⢸⡇⠂⡝⠌⢷⢫⢮⡜⡀⠀",
+    "⠀⠀⢰⣜⠘⡀⢡⠰⠳⣎⢂⣟⡎⠘⣬⡕⣈⣼⠢⠹⡟⠇⠀",
+    "⠀⠠⢋⢿⢳⢼⣄⣆⣦⣱⣿⣿⣿⣷⠬⣿⣿⣿⣿⠑⠵⠀⠀",
+    "⠀⠀⠀⡜⢩⣯⢝⡀⠁⠀⠙⠛⠛⠃⠀⠈⠛⠛⡿⠀⠀⠀⠀",
+    "⠀⠀⠀⠀⠀⣿⠢⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀",
+    "⠀⠀⠀⠀⢀⣀⡇⠀⠑⠀⠀⠀⠀⠐⢄⠄⢀⡼⠃⠀⠀⠀⠀",
+    "⠀⠀⠀⠀⢸⣿⣷⣤⣀⠈⠲⡤⣀⣀⠀⡰⠋⠀⠀⠀⠀⠀⠀",
+    "⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣶⣤⣙⣷⣅⡀⠀⠀⠀⠀⠀⠀⠀",
+    "⠀⠀⢀⣾⣿⣿⣿⣿⣻⢿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀",
+    "⠀⡠⠟⠁⠙⠟⠛⠛⢿⣿⣾⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀",
+  },
+
+  {
+    "                                   ",
+    "   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          ",
+    "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ",
+    "          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     ",
+    "           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    ",
+    "          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   ",
+    "   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  ",
+    "  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
+    " ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  ",
+    " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ ",
+    "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
+    "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
+    "                                   ",
+  },
+  {
+    "                                                  ",
+    "██╗      ██████╗  ██████╗██╗  ██╗    ██╗███╗   ██╗",
+    "██║     ██╔═══██╗██╔════╝██║ ██╔╝    ██║████╗  ██║",
+    "██║     ██║   ██║██║     █████╔╝     ██║██╔██╗ ██║",
+    "██║     ██║   ██║██║     ██╔═██╗     ██║██║╚██╗██║",
+    "███████╗╚██████╔╝╚██████╗██║  ██╗    ██║██║ ╚████║",
+    "╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝",
+    "                                                  ",
+  },
+}
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -5,12 +50,14 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    dashboard = { enabled = false },
+    dashboard = { enabled = false
+ },
     notifier = {
       enabled = false,
       timeout = 3000,
     },
     quickfile = { enabled = true },
+    scroll = { enabled = true },
     statuscolumn = { enabled = false },
     words = { enabled = true },
     styles = {
@@ -25,6 +72,34 @@ return {
     -- end,
   },
   keys = {
+    {
+      "<leader>.",
+      function()
+        Snacks.scratch()
+      end,
+      desc = "Toggle Scratch Buffer",
+    },
+    {
+      "<leader>ss",
+      function()
+        Snacks.scratch.select()
+      end,
+      desc = "Select Scratch Buffer",
+    },
+    {
+      "<leader>z",
+      function()
+        Snacks.zen()
+      end,
+      desc = "Toggle Zen Mode",
+    },
+    {
+      "<leader>Z",
+      function()
+        Snacks.zen.zoom()
+      end,
+      desc = "Toggle Zoom",
+    },
     {
       "<leader>ps",
       function()
@@ -161,8 +236,8 @@ return {
         Snacks.toggle.treesitter():map("<leader>uT")
         Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
         Snacks.toggle.inlay_hints():map("<leader>uh")
-
-        -- require("folke.snacks").opts.toggle_mappings()
+        Snacks.toggle.indent():map("<leader>ui")
+        Snacks.toggle.dim():map("<leader>uD")
       end,
     })
   end,

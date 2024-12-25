@@ -67,11 +67,6 @@ return {
   },
   -- Lua
   {
-    "folke/zen-mode.nvim", -- TODO : Check the docs of zen mode
-    cmd = "ZenMode",
-    opts = {},
-  },
-  {
     "nvim-lualine/lualine.nvim",
     config = function()
       local function oil_status()

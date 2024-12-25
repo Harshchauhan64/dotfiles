@@ -91,7 +91,7 @@ return {
       dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
       dashboard.button("r", "  Recent files", ":Telescope oldfiles<CR>"),
       dashboard.button("w", "  Word from files", ":Telescope live_grep<CR>"),
-      dashboard.button("c", "󰙨  Leetcode", ":Leet <CR>"),
+      dashboard.button("c", "󰙨  Rat race", ":Leet <CR>"),
       dashboard.button("s", "  Settings", ":e dotfiles/nvim<CR>"),
       dashboard.button("l", "󰤄  Lazy", ":Lazy update<CR>"),
       dashboard.button("q", "󰩈  Quit", ":qa<CR>"),

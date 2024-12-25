@@ -1,5 +1,16 @@
 return {
   {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
     "folke/trouble.nvim",
     opts = {}, -- for default options, refer to the configuration section for custom setup.
     cmd = "Trouble",
@@ -43,8 +54,7 @@ return {
       "b0o/schemastore.nvim",
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
-      { "folke/neodev.nvim", opts = {} }, -- Adds extra Neovim Lua API completion
+      "saghen/blink.cmp",
     },
     config = function()
       -- Set up Mason to automatically install LSP servers
@@ -61,11 +71,17 @@ return {
         },
       })
 
-      -- Set up neodev for better Lua development
-      require("neodev").setup()
-
+      config = function(_, opts)
+        local lspconfig = require("lspconfig")
+        for server, config in pairs(opts.servers) do
+          -- passing config.capabilities to blink.cmp merges with the capabilities in your
+          -- `opts[server].capabilities, if you've defined it
+          config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+          lspconfig[server].setup(config)
+        end
+      end
       local lspconfig = require("lspconfig")
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       -- Lua
       lspconfig.lua_ls.setup({
@@ -76,7 +92,7 @@ return {
               callSnippet = "Replace",
             },
             diagnostics = {
-              globals = { "vim" },
+              globals = { "vik" },
             },
             workspace = {
               library = {
