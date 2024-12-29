@@ -1,4 +1,16 @@
 return {
+
+  {
+    "sphamba/smear-cursor.nvim", -- animation idk just for fun
+    enabled = false,
+    opts = {
+      -- Super experimental I dont know what i'm doing
+      stiffness = 0.5, -- 0.6      [0, 1]
+      trailing_stiffness = 0.3, -- 0.3      [0, 1]
+      distance_stop_animating = 0.1, -- 0.1      > 0
+      hide_target_hack = false, -- true     boolean
+    },
+  },
   {
     "ellisonleao/gruvbox.nvim",
     lazy = true,
@@ -18,26 +30,6 @@ return {
     --   -- set colorscheme
     --   vim.cmd.colorscheme("catppuccin-mocha")
     -- end,
-  },
-  {
-    "rcarriga/nvim-notify",
-    event = "VeryLazy",
-    keys = {
-      {
-        "<leader>nn",
-        function()
-          require("notify").dismiss({ silent = true, pending = true })
-        end,
-        desc = "Dismiss All Notifications",
-      },
-    },
-    config = function()
-      local notify = require("notify")
-      notify.setup({
-        render = "compact",
-        stages = "fade",
-      })
-    end,
   },
   {
     "folke/noice.nvim",

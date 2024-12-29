@@ -48,6 +48,9 @@ return {
       "nvim-lua/plenary.nvim",
       "sindrets/diffview.nvim",
     },
+    keys = {
+      { "<leader>gi", "<cmd>Neogit<cr>", desc = "Neogit Run" },
+    },
     config = true,
   },
 }

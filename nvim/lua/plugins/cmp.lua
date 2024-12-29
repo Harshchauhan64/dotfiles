@@ -1,6 +1,13 @@
 return {
   {
     "saghen/blink.cmp",
+    enabled = function()
+      return not vim.tbl_contains({
+        "oil",
+        "Telescope",
+        "TelescopePrompt",
+      }, vim.bo.filetype) and vim.bo.buftype ~= "prompt" and vim.b.completion ~= false
+    end,
     dependencies = {
       "rafamadriz/friendly-snippets",
       { "L3MON4D3/LuaSnip", version = "v2.*" },
@@ -17,7 +24,6 @@ return {
         ["<Up>"] = { "select_prev", "snippet_backward", "fallback" },
         ["<Down>"] = { "select_next", "snippet_forward", "fallback" },
         ["<CR>"] = { "accept", "fallback" },
-        ["<Esc>"] = { "hide", "fallback" },
         ["<PageUp>"] = { "scroll_documentation_up", "fallback" },
         ["<PageDown>"] = { "scroll_documentation_down", "fallback" },
       },
@@ -27,19 +33,59 @@ return {
       },
       sources = {
         default = {
-          "lazydev",
-          "lsp", -- replaces nvim_lsp
-          "path",
-          "snippets",
           "luasnip",
+          "snippets",
+          "lsp",
+          "path",
           "buffer",
+          "lazydev",
         },
         providers = {
+          lsp = {
+            name = "lsp",
+            enabled = true,
+            module = "blink.cmp.sources.lsp",
+            fallbacks = { "snippets", "luasnip", "buffer" },
+            score_offset = 85, -- the higher the number, the higher the priority
+          },
+          luasnip = {
+            name = "luasnip",
+            enabled = true,
+            module = "blink.cmp.sources.luasnip",
+            min_keyword_length = 2,
+            fallbacks = { "snippets" },
+            score_offset = 100, -- the higher the number, the higher the priority
+          },
+          path = {
+            name = "Path",
+            module = "blink.cmp.sources.path",
+            score_offset = 3,
+            fallbacks = { "snippets", "luasnip", "buffer" },
+            opts = {
+              trailing_slash = false,
+              label_trailing_slash = true,
+              get_cwd = function(context)
+                return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
+              end,
+              show_hidden_files_by_default = true,
+            },
+          },
+          buffer = {
+            name = "Buffer",
+            module = "blink.cmp.sources.buffer",
+            min_keyword_length = 2,
+          },
+          snippets = {
+            name = "snippets",
+            enabled = true,
+            module = "blink.cmp.sources.snippets",
+            score_offset = 85, -- the higher the number, the higher the priority
+          },
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
             -- make lazydev completions top priority (see `:h blink.cmp`)
-            score_offset = 100,
+            score_offset = 90,
           },
         },
         cmdline = function()
@@ -253,3 +299,17 @@ return {
   --   end,
   -- },
 }
+
+-- Failed to run `config` for blink.cmp
+--
+-- ...share/nvim/lazy/blink.cmp/lua/blink/cmp/config/utils.lua:14: sources.providers.lsp.kind: unexpected field found in configuration
+--
+-- # stacktrace:
+--   - /blink.cmp/lua/blink/cmp/config/utils.lua:14 _in_ **validate**
+--   - /blink.cmp/lua/blink/cmp/config/sources.lua:136 _in_ **validate_provider**
+--   - /blink.cmp/lua/blink/cmp/config/sources.lua:126 _in_ **validate**
+--   - /blink.cmp/lua/blink/cmp/config/init.lua:43 _in_ **validate**
+--   - /blink.cmp/lua/blink/cmp/config/init.lua:52 _in_ **merge_with**
+--   - /blink.cmp/lua/blink/cmp/init.lua:18 _in_ **setup**
+--   - ~/.config/nvim/lua/config/lazy.lua:19
+--   - ~/.config/nvim/init.lua:6

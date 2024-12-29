@@ -92,7 +92,7 @@ return {
               callSnippet = "Replace",
             },
             diagnostics = {
-              globals = { "vik" },
+              globals = { "vim" },
             },
             workspace = {
               library = {

@@ -54,34 +54,26 @@ return {
     end,
   },
   {
-    "windwp/nvim-autopairs",
+    "echasnovski/mini.pairs",
     event = "InsertEnter",
-    opts = {
-      check_ts = true,
-      ts_config = {
-        lua = { "string" }, -- it will not add a pair on that treesitter node
-        javascript = { "template_string" },
-      },
-      disable_filetype = { "TelescopePrompt" },
-      fast_wrap = {
-        map = "<M-e>",
-        chars = { "{", "[", "(", '"', "'" },
-        pattern = [=[[%'%"%)%>%]%)%}%,]]=],
-        end_key = "$",
-        keys = "qwertyuiopzxcvbnmasdfghjkl",
-        check_comma = true,
-        highlight = "Search",
-        highlight_grey = "Comment",
-      },
-    },
-    config = function(_, opts)
-      local npairs = require("nvim-autopairs")
-      npairs.setup(opts)
+    config = function()
+      require("mini.pairs").setup({
+        -- In which modes mappings from this `config` should be created
+        modes = { insert = true, command = false, terminal = false },
+        mappings = {
+          ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\]." },
+          ["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\]." },
+          ["{"] = { action = "open", pair = "{}", neigh_pattern = "[^\\]." },
 
-      -- If you want to automatically add `(` after selecting a function or method
-      -- local cmp_autopairs = require("nvim-autopairs.completion.blink")
-      --   local cmp = require("cmp")
-      --   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+          [")"] = { action = "close", pair = "()", neigh_pattern = "[^\\]." },
+          ["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\]." },
+          ["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\]." },
+
+          ['"'] = { action = "closeopen", pair = '""', neigh_pattern = "[^\\].", register = { cr = false } },
+          ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^%a\\].", register = { cr = false } },
+          ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\].", register = { cr = false } },
+        },
+      })
     end,
   },
   --
@@ -182,7 +174,18 @@ return {
     keys = {
       { "<leader>a", "<cmd>AssistantToggle<cr>", desc = "Toggle Assistant.nvim window" },
     },
-    opts = {},
+    opts = {
+      command = {
+        cpp = {
+          compile = {
+            args = { "$FILENAME_WITH_EXTENSION", "-o", "bin/$FILENAME_WITHOUT_EXTENSION" },
+          },
+          exclude = {
+            main = "./bin/$FILENAME_WITHOUT_EXTENSION",
+          },
+        },
+      },
+    },
   },
   {
     "b0o/schemastore.nvim",
