@@ -1,5 +1,4 @@
 return {
-
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   event = { "BufReadPost", "BufNewFile" },
@@ -23,18 +22,6 @@ return {
       sync_install = false,
       highlight = { enable = true },
       indent = { enable = true },
-      matchup = {
-        enable = true,
-        include_match_words = true,
-        enable_quotes = true, -- Highlight quote pairs
-        disable_virtual_text = false,
-        matchup_patterns = {
-          -- Add custom patterns here
-          { "%(", "%)" }, -- () parentheses
-          { "%[", "%]" }, -- [] brackets
-          { "%{", "%}" }, -- {} braces
-        },
-      },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -49,12 +36,12 @@ return {
           enable = true,
           set_jumps = true,
           goto_next_start = {
-            ["]m"] = "@function.outer",
-            ["]]"] = "@class.outer",
+            ["]]"] = "@function.outer",
+            ["]c"] = "@class.outer",
           },
           goto_next_end = {
-            ["]M"] = "@function.outer",
-            ["]["] = "@class.outer",
+            ["]]"] = "@function.outer",
+            ["]C"] = "@class.outer",
           },
           goto_previous_start = {
             ["[m"] = "@function.outer",

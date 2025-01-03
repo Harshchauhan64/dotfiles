@@ -54,7 +54,7 @@ return {
             module = "blink.cmp.sources.luasnip",
             min_keyword_length = 2,
             fallbacks = { "snippets" },
-            score_offset = 100, -- the higher the number, the higher the priority
+            score_offset = 85, -- the higher the number, the higher the priority
           },
           path = {
             name = "Path",

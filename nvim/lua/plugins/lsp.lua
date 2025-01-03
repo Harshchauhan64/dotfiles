@@ -84,92 +84,72 @@ return {
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       -- Lua
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = "Replace",
-            },
-            diagnostics = {
-              globals = { "vim" },
-            },
-            workspace = {
-              library = {
-                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                [vim.fn.stdpath("config") .. "/lua"] = true,
+      local servers = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              completion = { callSnippet = "Replace" },
+              diagnostics = { globals = { "vim" } },
+              workspace = {
+                library = {
+                  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                  [vim.fn.stdpath("config") .. "/lua"] = true,
+                },
               },
             },
           },
         },
-      })
-
-      -- JSONls
-      lspconfig.jsonls.setup({
-        capabilities = capabilities,
-        settings = {
-          json = {
-            schemas = require("schemastore").json.schemas(),
-            validate = { enable = true },
-          },
-        },
-      })
-
-      -- DockerLS
-      lspconfig.dockerls.setup({
-        capabilities = capabilities,
-        filetypes = { "dockerfile" },
-      })
-
-      -- Python
-      lspconfig.pyright.setup({
-        capabilities = capabilities,
-      })
-
-      -- Go
-      lspconfig.gopls.setup({
-        capabilities = capabilities,
-        settings = {
-          gopls = {
-            analyses = {
-              unusedparams = true,
-            },
-            staticcheck = true,
-            gofumpt = true,
-            hints = {
-              assignVariableTypes = true,
-              compositeLiteralFields = true,
-              compositeLiteralTypes = true,
-              constantValues = true,
-              functionTypeParameters = true,
-              parameterNames = true,
-              rangeVariableTypes = true,
+        jsonls = {
+          settings = {
+            json = {
+              schemas = require("schemastore").json.schemas(),
+              validate = { enable = true },
             },
           },
         },
-      })
-
-      -- Zig
-      lspconfig.zls.setup({
-        capabilities = capabilities,
-      })
-
-      -- Marksman
-      lspconfig.marksman.setup({
-        capabilities = capabilities,
-      })
-
-      -- clangd
-      lspconfig.clangd.setup({
-        capabilities = capabilities,
-        cmd = {
-          "clangd",
-          "--background-index",
-          "--suggest-missing-includes",
-          "--clang-tidy",
-          "--header-insertion=iwyu",
+        dockerls = {
+          filetypes = { "dockerfile" },
         },
-      })
+        gopls = {
+          settings = {
+            gopls = {
+              analyses = { unusedparams = true },
+              staticcheck = true,
+              gofumpt = true,
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+            },
+          },
+        },
+        clangd = {
+          cmd = {
+            "clangd",
+            "--background-index",
+            "--suggest-missing-includes",
+            "--clang-tidy",
+            "--header-insertion=iwyu",
+          },
+        },
+      }
+
+      -- Setup all servers with capabilities
+      for server, config in pairs(servers) do
+        config.capabilities = capabilities
+        lspconfig[server].setup(config)
+      end
+
+      -- Simple server setups
+      local simple_servers = { "pyright", "zls", "marksman" }
+      for _, server in ipairs(simple_servers) do
+        lspconfig[server].setup({ capabilities = capabilities })
+      end
       vim.diagnostic.config({
         virtual_text = {
           prefix = "●",
@@ -178,7 +158,7 @@ return {
           border = "rounded",
         },
         signs = true,
-        underline = true,
+        underline = false,
         update_in_insert = false,
         severity_sort = true,
       })
