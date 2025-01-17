@@ -2,6 +2,12 @@ return {
   {
     "norcalli/nvim-colorizer.lua",
   },
+  {
+    "andymass/vim-matchup",
+    setup = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end,
+  },
 
   {
     "sphamba/smear-cursor.nvim", -- animation idk just for fun

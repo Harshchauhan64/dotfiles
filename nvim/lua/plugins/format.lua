@@ -28,12 +28,12 @@ return {
     end,
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "isort", "black" },
+      python = { "pyright" },
       go = { "gofmt", "goimports" },
       cpp = { "clang-format" },
       json = { "jq", "prettierd" },
-      -- markdown = { "prettierd" },
-      --- javascript = { 'prettierd', 'prettier' },
+      markdown = { "marksman" },
+      -- javascript = { 'prettierd', 'prettier' },
       -- typescript = { 'prettierd', 'prettier' },
       -- rust = { 'rustfmt' },
       -- Add more languages and formatters as needed
@@ -51,9 +51,6 @@ return {
       },
       prettierd = {
         prepend_args = { "--print-width", "100", "--single-quote" },
-      },
-      ["clang-format"] = {
-        prepend_args = { "--style=file" },
       },
     },
   },

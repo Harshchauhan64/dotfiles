@@ -13,15 +13,22 @@ return {
 
       telescope.setup({
         defaults = {
+          scroll_strategy = "limit",
           mappings = {
+            n = {
+              ["<esc>"] = require("telescope.actions").close,
+              ["J"] = require("telescope.actions").preview_scrolling_down,
+              ["K"] = require("telescope.actions").preview_scrolling_up,
+            },
             i = {
+
+              ["<esc>"] = require("telescope.actions").close,
               ["<C-n>"] = actions.cycle_history_next,
               ["<C-p>"] = actions.cycle_history_prev,
+              ["J"] = require("telescope.actions").preview_scrolling_down,
+              ["K"] = require("telescope.actions").preview_scrolling_up,
             },
           },
-        },
-        pickers = {
-          theme = "ivy",
         },
         extensions = {
           fzf = {

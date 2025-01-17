@@ -1,6 +1,22 @@
 local leet_arg = "leetcode.nvim"
 return {
   {
+    "Hashino/doing.nvim",
+    cmd = "Do",
+  -- stylua: ignore start
+    keys = { 
+      { "<leader>da", function() require("doing").add() end, {}, },
+      { "<leader>dn", function() require("doing").done() end, {}, },
+      { "<leader>de", function() require("doing").edit() end, {}, },
+    },
+  },
+  -- stylua: ignore end
+  { -- testing rust stuff
+    "mrcjkb/rustaceanvim",
+    version = "^5", -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+  {
     "MagicDuck/grug-far.nvim",
     config = function()
       require("grug-far").setup({})
@@ -36,7 +52,7 @@ return {
       { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
   },
-  { "meznaric/key-analyzer.nvim",  command = "KeyAnalyzer",               opts = {} },
+  { "meznaric/key-analyzer.nvim", command = "KeyAnalyzer", opts = {} },
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -48,8 +64,17 @@ return {
     end,
   },
   {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+    opts = {
+      disable_filetype = { "oil" },
+    },
+  },
+  {
     "echasnovski/mini.pairs",
     event = "InsertEnter",
+    enabled = false,
     config = function()
       require("mini.pairs").setup({
         -- In which modes mappings from this `config` should be created
@@ -70,10 +95,9 @@ return {
       })
     end,
   },
-  { "wakatime/vim-wakatime",       lazy = false },
-  { "tpope/vim-sleuth",            event = { "BufReadPre", "BufNewFile" } }, -- Detect tabstop and shiftwidth automatically
-  { "andymass/vim-matchup" },
-  { "nvim-tree/nvim-web-devicons", lazy = true,                           enabled = vim.g.have_nerd_font, opts = true },
+  { "wakatime/vim-wakatime", lazy = false },
+  { "tpope/vim-sleuth", event = { "BufReadPre", "BufNewFile" } }, -- Detect tabstop and shiftwidth automatically
+  { "nvim-tree/nvim-web-devicons", lazy = true, enabled = vim.g.have_nerd_font, opts = true },
   {
     "folke/todo-comments.nvim",
     event = { "BufReadPost", "BufNewFile" },
@@ -91,10 +115,10 @@ return {
       "TmuxNavigatePrevious",
     },
     keys = {
-      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },

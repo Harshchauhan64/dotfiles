@@ -14,10 +14,17 @@ return {
         "vimdoc",
         "go",
         "zig",
+        "rust",
         "markdown",
         "vimdoc",
         "bash",
         "markdown_inline",
+        "hyprlang",
+      },
+      rainbow = {
+        enable = true,
+        extended_mode = true,
+        max_file_lines = nil,
       },
       sync_install = false,
       highlight = { enable = true },
@@ -73,5 +80,6 @@ return {
         },
       },
     })
+    vim.filetype.add({ pattern = { [".*/hypr/.*%.conf"] = "hyprlang" } })
   end,
 }
