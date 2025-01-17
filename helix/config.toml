@@ -1,1 +1,17 @@
-C:/Users/harsh/AppData/Roaming/helix/config.toml
+theme = "gruvbox"
+[editor]
+line-number = "relative"
+cursorline = true
+color-modes = true
+[editor.statusline]
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "S"
+[editor.cursor-shape]
+insert = "bar"
+[editor.file-picker]
+hidden = false
+[keys.normal]
+W = ":w"
+x = "delete_selection"
+V = "extend_line"
