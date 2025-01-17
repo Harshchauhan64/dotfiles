@@ -1,14 +1,17 @@
 return {
+  {
+    "norcalli/nvim-colorizer.lua",
+  },
 
   {
     "sphamba/smear-cursor.nvim", -- animation idk just for fun
     enabled = false,
     opts = {
       -- Super experimental I dont know what i'm doing
-      stiffness = 0.5, -- 0.6      [0, 1]
-      trailing_stiffness = 0.3, -- 0.3      [0, 1]
+      stiffness = 0.5,               -- 0.6      [0, 1]
+      trailing_stiffness = 0.3,      -- 0.3      [0, 1]
       distance_stop_animating = 0.1, -- 0.1      > 0
-      hide_target_hack = false, -- true     boolean
+      hide_target_hack = false,      -- true     boolean
     },
   },
   {
@@ -35,23 +38,20 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
-      require("noice").setup({
-        lsp = {
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
-          },
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
         },
-        -- you can enable a preset for easier configuration
-        presets = {
-          bottom_search = false, -- use a classic bottom cmdline for search
-          command_palette = true, -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false, -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false, -- add a border to hover docs and signature help
-        },
-      }),
+      },
+      -- you can enable a preset for easier configuration
+      presets = {
+        bottom_search = false,        -- use a classic bottom cmdline for search
+        command_palette = true,       -- position the cmdline and popupmenu together
+        long_message_to_split = true, -- long messages will be sent to a split
+        inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = false,       -- add a border to hover docs and signature help
+      },
     },
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -127,11 +127,11 @@ return {
             },
           },
           lualine_b = {
-            { "branch", icon = "" },
+            { "branch",   icon = "" },
             { "filetype", icon_only = true },
           },
           lualine_c = {
-            { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
+            { "filename",    path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
             { oil_status },
             { fzf_status },
             { trouble_status },
@@ -181,7 +181,17 @@ return {
       },
     },
   },
-  --- NOTE : SUPER TEMPORARY I CAN REMOVE IT ANY TIME
+  --- NOTE : super temporary i can remove it any time
+  {
+    "akinsho/bufferline.nvim",
+    event = "VeryLazy",
+    enabled = false,
+    keys = {
+      { "<Tab>",   "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
+      { "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
+    },
+    opts = {},
+  },
   -- {
   --   "akinsho/bufferline.nvim",
   --   event = "VeryLazy",
