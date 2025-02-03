@@ -89,9 +89,9 @@ return {
 
     -- Set menu
     dashboard.section.buttons.val = {
-      dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
-      dashboard.button("r", "  Recent files", ":Telescope oldfiles<CR>"),
-      dashboard.button("w", "  Word from files", ":Telescope live_grep<CR>"),
+      dashboard.button("f", "  Find file", ":lua Snacks.picker.files(opts)<CR>"),
+      dashboard.button("r", "  Recent files", ":lua Snacks.picker.recent(opts)<CR>"),
+      dashboard.button("w", "  Word from files", ":lua Snacks.picker.grep(opts)<CR>"),
       dashboard.button("c", "󰙨  Rat race", ":Leet <CR>"),
       dashboard.button("s", "  Settings", ":e dotfiles/nvim<CR>"),
       dashboard.button("l", "󰤄  Lazy", ":Lazy update<CR>"),

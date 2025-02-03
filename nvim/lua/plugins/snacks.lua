@@ -1,54 +1,16 @@
-local headers = {
-  [[
-    ⠀⠀⠀⠀⠀⠀⠀⢀⠀⠔⡀⠀⢀⠞⢰⠂⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⢸⠘⢰⡃⠔⠩⠤⠦⠤⢀⡀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⢀⠄⢒⠒⠺⠆⠈⠀⠀⢐⣂⠤⠄⡀⠯⠕⣒⣒⡀⠀
-    ⠀⠀⢐⡡⠔⠁⠆⠀⠀⠀⠀⠀⢀⠠⠙⢆⠀⠈⢁⠋⠥⣀⣀
-    ⠈⠉⠀⣰⠀⠀⠀⠀⡀⠀⢰⣆⢠⠠⢡⡀⢂⣗⣖⢝⡎⠉⠀
-    ⢠⡴⠛⡇⠀⠐⠀⡄⣡⢇⠸⢸⢸⡇⠂⡝⠌⢷⢫⢮⡜⡀⠀
-    ⠀⠀⢰⣜⠘⡀⢡⠰⠳⣎⢂⣟⡎⠘⣬⡕⣈⣼⠢⠹⡟⠇⠀
-    ⠀⠠⢋⢿⢳⢼⣄⣆⣦⣱⣿⣿⣿⣷⠬⣿⣿⣿⣿⠑⠵⠀⠀
-    ⠀⠀⠀⡜⢩⣯⢝⡀⠁⠀⠙⠛⠛⠃⠀⠈⠛⠛⡿⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⣿⠢⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀
-    ⠀⠀⠀⠀⢀⣀⡇⠀⠑⠀⠀⠀⠀⠐⢄⠄⢀⡼⠃⠀⠀⠀⠀
-    ⠀⠀⠀⠀⢸⣿⣷⣤⣀⠈⠲⡤⣀⣀⠀⡰⠋⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣶⣤⣙⣷⣅⡀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⢀⣾⣿⣿⣿⣿⣻⢿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀
-    ⠀⡠⠟⠁⠙⠟⠛⠛⢿⣿⣾⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀
-  ]],
-
-  {
-    "                                   ",
-    "   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          ",
-    "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ",
-    "          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     ",
-    "           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    ",
-    "          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   ",
-    "   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  ",
-    "  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
-    " ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  ",
-    " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ ",
-    "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
-    "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
-    "                                   ",
-  },
-  {
-    "                                                  ",
-    "██╗      ██████╗  ██████╗██╗  ██╗    ██╗███╗   ██╗",
-    "██║     ██╔═══██╗██╔════╝██║ ██╔╝    ██║████╗  ██║",
-    "██║     ██║   ██║██║     █████╔╝     ██║██╔██╗ ██║",
-    "██║     ██║   ██║██║     ██╔═██╗     ██║██║╚██╗██║",
-    "███████╗╚██████╔╝╚██████╗██║  ██╗    ██║██║ ╚████║",
-    "╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝",
-    "                                                  ",
-  },
-}
 return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
   ---@type snacks.Config
   opts = {
+    terminal = {
+      win = {
+        wo = {
+          winbar = "",
+        },
+      },
+    },
     bigfile = { enabled = true },
     dashboard = {
       enabled = false,
@@ -74,15 +36,6 @@ return {
         { section = "startup" },
       },
       preset = {
-        -- header = [[
-
-        -- ██╗      ██████╗  ██████╗██╗  ██╗    ██╗███╗   ██╗
-        -- ██║     ██╔═══██╗██╔════╝██║ ██╔╝    ██║████╗  ██║
-        -- ██║     ██║   ██║██║     █████╔╝     ██║██╔██╗ ██║
-        -- ██║     ██║   ██║██║     ██╔═██╗     ██║██║╚██╗██║
-        -- ███████╗╚██████╔╝╚██████╗██║  ██╗    ██║██║ ╚████║
-        -- ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝
-        --                                                    ]],
         header = headers,
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
@@ -98,6 +51,24 @@ return {
           },
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy update", enabled = package.loaded.lazy ~= nil },
           { icon = "󰩈 ", key = "q", desc = "Quit", action = ":qa" },
+        },
+      },
+    },
+    picker = {
+      enabled = true,
+      matcher = { frecency = true },
+      win = {
+        input = {
+          keys = {
+            -- to close the picker on ESC instead of going to normal mode,
+            -- add the following keymap to your config
+            ["<Esc>"] = { "close", mode = { "n", "i" } },
+            -- I'm used to scrolling like this in LazyGit
+            ["J"] = { "preview_scroll_down", mode = { "i", "n" } },
+            ["K"] = { "preview_scroll_up", mode = { "i", "n" } },
+            ["H"] = { "preview_scroll_left", mode = { "i", "n" } },
+            ["L"] = { "preview_scroll_right", mode = { "i", "n" } },
+          },
         },
       },
     },
@@ -132,7 +103,7 @@ return {
       desc = "Toggle Scratch Buffer",
     },
     {
-      "<leader>ss",
+      "<leader>sp",
       function()
         Snacks.scratch.select()
       end,
@@ -263,6 +234,28 @@ return {
         })
       end,
     },
+    -- stylua: ignore start
+    -- picker
+    -- git
+    { "<leader>gc", function() Snacks.picker.git_log() end,    desc = "Git Log" },
+    { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+    -- search
+    { "<leader><leader>", function() Snacks.picker.buffers() end, desc = "Buffers" },
+    { "<leader>/",  function() Snacks.picker.grep() end,       desc = "Grep" },
+    { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep", },
+    { "<leader>sf", function() Snacks.picker.files() end, desc = "Find Files", },
+    { "<leader>sM", function() Snacks.picker.man() end,         desc = "Man Pages" },
+    { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+    { "<leader>sk", function() Snacks.picker.keymaps() end,     desc = "Keymaps" },
+    { "<leader>sh", function() Snacks.picker.help() end,        desc = "Help Pages" },
+    { "<leader>gs", function() Snacks.picker.git_status() end,  desc = "Git Status" },
+    { "<leader>sH", function() Snacks.picker.highlights() end,  desc = "Highlights" },
+    { "<leader>sj", function() Snacks.picker.jumps() end,       desc = "Jumps" },
+    { "<leader>sq", function() Snacks.picker.qflist() end,      desc = "Quickfix List" },
+    { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" },
+    { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+    },
+    --stylua: ignore end
   },
   init = function()
     vim.api.nvim_create_autocmd("User", {
@@ -283,8 +276,8 @@ return {
         Snacks.toggle.diagnostics():map("<leader>ud")
         Snacks.toggle.line_number():map("<leader>ul")
         Snacks.toggle
-            .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-            :map("<leader>uc")
+          .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+          :map("<leader>uc")
         Snacks.toggle.treesitter():map("<leader>uT")
         Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
         Snacks.toggle.inlay_hints():map("<leader>uh")

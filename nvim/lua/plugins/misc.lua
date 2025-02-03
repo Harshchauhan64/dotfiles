@@ -1,20 +1,9 @@
 local leet_arg = "leetcode.nvim"
 return {
-  {
-    "Hashino/doing.nvim",
-    cmd = "Do",
-  -- stylua: ignore start
-    keys = { 
-      { "<leader>da", function() require("doing").add() end, {}, },
-      { "<leader>dn", function() require("doing").done() end, {}, },
-      { "<leader>de", function() require("doing").edit() end, {}, },
-    },
-  },
-  -- stylua: ignore end
   { -- testing rust stuff
     "mrcjkb/rustaceanvim",
-    version = "^5", -- Recommended
-    lazy = false, -- This plugin is already lazy
+    version = "^5",
+    lazy = false,
   },
   {
     "MagicDuck/grug-far.nvim",
@@ -36,8 +25,15 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    ---@type Flash.Config
     opts = {
+      jump = {
+        autojump = true,
+      },
+      modes = {
+        char = {
+          jump_labels = true,
+        },
+      },
       exclude = {
         "alpha",
         "dashboard",
@@ -46,7 +42,7 @@ return {
     -- stylua: ignore
     keys = {
       { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-      { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      { "E",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
       { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
       { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
@@ -103,6 +99,22 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
+    keys = {
+      {
+        "<leader>st",
+        function()
+          Snacks.picker.todo_comments()
+        end,
+        desc = "Todo",
+      },
+      {
+        "<leader>sT",
+        function()
+          Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME", "PERF", "HACK", "NOTE" } })
+        end,
+        desc = "Todo/Fix/Fixme",
+      },
+    },
   },
   {
     "christoomey/vim-tmux-navigator",

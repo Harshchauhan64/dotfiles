@@ -3,21 +3,14 @@ return {
     "norcalli/nvim-colorizer.lua",
   },
   {
-    "andymass/vim-matchup",
-    setup = function()
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end,
-  },
-
-  {
     "sphamba/smear-cursor.nvim", -- animation idk just for fun
-    enabled = false,
+    enabled = true,
     opts = {
       -- Super experimental I dont know what i'm doing
-      stiffness = 0.5,               -- 0.6      [0, 1]
-      trailing_stiffness = 0.3,      -- 0.3      [0, 1]
+      stiffness = 0.5, -- 0.6      [0, 1]
+      trailing_stiffness = 0.3, -- 0.3      [0, 1]
       distance_stop_animating = 0.1, -- 0.1      > 0
-      hide_target_hack = false,      -- true     boolean
+      hide_target_hack = false, -- true     boolean
     },
   },
   {
@@ -52,11 +45,11 @@ return {
       },
       -- you can enable a preset for easier configuration
       presets = {
-        bottom_search = false,        -- use a classic bottom cmdline for search
-        command_palette = true,       -- position the cmdline and popupmenu together
+        bottom_search = false, -- use a classic bottom cmdline for search
+        command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false,       -- add a border to hover docs and signature help
+        inc_rename = false, -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = false, -- add a border to hover docs and signature help
       },
     },
     dependencies = {
@@ -96,28 +89,14 @@ return {
         return ""
       end
 
-      local function lsp_client_names()
-        local clients = vim.lsp.get_clients({ bufnr = 0 })
-        if #clients == 0 then
-          return "No LSP"
-        end
-        local client_names = {}
-        for _, client in ipairs(clients) do
-          table.insert(client_names, client.name)
-        end
-        return table.concat(client_names, ", ")
-      end
-
       require("lualine").setup({
         options = {
-          -- theme = "catppuccin",
-          theme = "gruvbox",
-          -- theme = "solarized",
+          theme = "gruvbox-material", -- {"gruvbox-material","gruvbox_dark"}
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
           globalstatus = true,
           disabled_filetypes = {
-            statusline = { "dashboard", "alpha", "TelescopePrompt", "lazy" },
+            statusline = { "dashboard", "alpha", "lazy" },
             winbar = { "dashboard", "alpha", "TelescopePrompt", "lazy" },
           },
         },
@@ -133,11 +112,16 @@ return {
             },
           },
           lualine_b = {
-            { "branch",   icon = "" },
-            { "filetype", icon_only = true },
+            { "branch", icon = "" },
           },
           lualine_c = {
-            { "filename",    path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
+            {
+              "filename",
+              file_status = true,
+              path = 1,
+              newfile_status = true,
+              symbols = { modified = "+", readonly = "RO", unnamed = "NEW" },
+            },
             { oil_status },
             { fzf_status },
             { trouble_status },
@@ -145,13 +129,15 @@ return {
           },
           lualine_x = {
             { "diagnostics" },
-            { lsp_client_names },
+            { "filetype", icon_only = true },
           },
           lualine_y = {
-            {
-              "diff",
-              symbols = { added = " ", modified = " ", removed = " " },
-            },
+            -- { this is just diff (staged,modified,added)
+            --   "diff",
+            --   symbols = { added = " ", modified = " ", removed = " " },
+            -- },
+            { "selectioncount" },
+            { "searchcount", maxcount = 999, timeout = 500 },
           },
           lualine_z = { "progress" },
         },
@@ -193,79 +179,9 @@ return {
     event = "VeryLazy",
     enabled = false,
     keys = {
-      { "<Tab>",   "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
+      { "<Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
       { "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
     },
     opts = {},
   },
-  -- {
-  --   "akinsho/bufferline.nvim",
-  --   event = "VeryLazy",
-  --   keys = {
-  --     { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
-  --     { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
-  --     { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-  --     { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
-  --     { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-  --     { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
-  --   },
-  --   opts = {
-  --     options = {
-  --       mode = "buffers",
-  --       diagnostics = "nvim_lsp",
-  --       diagnostics_indicator = function(count, level)
-  --         local icon = level:match("error") and " " or " "
-  --         return " " .. icon .. count
-  --       end,
-  --       -- Configure as per catppuccin theme since you're using it
-  --       themable = true,
-  --       separator_style = "thin",
-  --       show_buffer_close_icons = true,
-  --       show_close_icon = false,
-  --       color_icons = true,
-  --       -- Show LSP and file icons
-  --       get_element_icon = function(element)
-  --         local icon, hl = require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
-  --         return icon, hl
-  --       end,
-  --       -- Custom indicators
-  --       indicators = {
-  --         modified = "●",
-  --         pinned = "車",
-  --       },
-  --       -- Group configuration
-  --       groups = {
-  --         options = {
-  --           toggle_hidden_on_enter = true,
-  --         },
-  --         items = {
-  --           {
-  --             name = "Tests",
-  --             priority = 2,
-  --             icon = "",
-  --             matcher = function(buf)
-  --               return buf.filename:match("_test") or buf.filename:match("test_")
-  --             end,
-  --           },
-  --           {
-  --             name = "Docs",
-  --             priority = 3,
-  --             icon = "",
-  --             matcher = function(buf)
-  --               return buf.filename:match("%.md") or buf.filename:match("%.txt")
-  --             end,
-  --           },
-  --         },
-  --       },
-  --       -- Hide certain filetypes from bufferline
-  --       custom_filter = function(buf_number, _)
-  --         local exclude_ft = { "qf", "fugitive", "git", "oil" }
-  --         local ft = vim.bo[buf_number].filetype
-  --         return not vim.tbl_contains(exclude_ft, ft)
-  --       end,
-  --     },
-  --     -- Match with your catppuccin theme
-  --     -- highlights = require("catppuccin.groups.integrations.bufferline").get(),
-  --   },
-  -- },
 }
