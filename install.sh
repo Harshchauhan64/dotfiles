@@ -9,7 +9,7 @@ if ! command -v stow &> /dev/null; then
 fi
 
 # Array of directories to stow
-dirs=("zsh" "vim" "nvim" "tmux")
+dirs=("zsh" "vim" "nvim" "tmux" "ghostty")
 
 # Stow each directory
 for dir in "${dirs[@]}"; do

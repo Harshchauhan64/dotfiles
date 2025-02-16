@@ -1,6 +1,6 @@
 # Lazygit Ezy access
 alias lg=lazygit
-alias ld=lazydocker
+alias lD=lazydocker
 
 alias n=nvim
 alias nc='nvim leetcode.nvim' 
@@ -38,7 +38,7 @@ alias lS='eza -l --icons --sort=size --reverse'
 alias lm='eza -l --icons --sort=modified --reverse'
 
 # Show only directories with icons
-alias ldir='eza -lD --icons'
+alias ld='eza -lD --icons'
 
 # Show extended attributes with icons
 alias lx='eza -l --icons --extended'

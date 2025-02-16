@@ -1,9 +1,7 @@
 local bufnr = vim.api.nvim_get_current_buf()
 -- stylua: ignore start
 vim.keymap.set("n",
-  "<leader>a",
-  function()
-  vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
+  "<leader>a", function() vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
   -- or vim.lsp.buf.codeAction() if you don't want grouping.
 end, { silent = true, buffer = bufnr })
 vim.keymap.set(
