@@ -50,12 +50,10 @@ return {
           enabled = true,
           module = "blink.cmp.sources.lsp",
           fallbacks = { "snippets", "luasnip", "buffer" },
-          score_offset = 100, -- the higher the number, the higher the priority
         },
         path = {
           name = "Path",
           module = "blink.cmp.sources.path",
-          score_offset = 3,
           fallbacks = { "snippets", "luasnip", "buffer" },
           opts = {
             trailing_slash = false,
@@ -75,13 +73,11 @@ return {
           name = "snippets",
           enabled = true,
           module = "blink.cmp.sources.snippets",
-          score_offset = 85, -- the higher the number, the higher the priority
         },
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
           -- make lazydev completions top priority (see `:h blink.cmp`)
-          score_offset = 90,
         },
         ripgrep = {
           module = "blink-ripgrep",
@@ -124,7 +120,9 @@ return {
           end,
         },
       },
-      cmdline = function()
+    },
+    cmdline = {
+      sources = function()
         local type = vim.fn.getcmdtype()
         -- Search forward and backward
         if type == "/" or type == "?" then
