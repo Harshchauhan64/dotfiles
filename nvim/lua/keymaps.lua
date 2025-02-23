@@ -24,7 +24,7 @@ vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory
 --Update all plugins with lazy with single keystroke
 vim.keymap.set("n", "<leader>up", "<CMD>Lazy update<CR>", { desc = "Update plugins Lazy" })
 -- telescope Keymaps
-vim.keymap.set("n", "<leader>ss", function()
+vim.keymap.set("n", "<leader>t", function()
   require("telescope.builtin").builtin()
 end, { desc = "[S]earch [S]elect Telescope" })
 

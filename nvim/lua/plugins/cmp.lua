@@ -3,6 +3,7 @@ return {
   dependencies = {
     "rafamadriz/friendly-snippets",
     "mikavilpas/blink-ripgrep.nvim",
+
     { "L3MON4D3/LuaSnip", version = "v2.*" },
     "onsails/lspkind.nvim",
   },
@@ -120,6 +121,13 @@ return {
           end,
         },
       },
+      min_keyword_length = function(ctx)
+        -- only applies when typing a command, doesn't apply to arguments
+        if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
+          return 2
+        end
+        return 0
+      end,
     },
     cmdline = {
       sources = function()
