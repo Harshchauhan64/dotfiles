@@ -33,6 +33,7 @@ return {
       cpp = { "clang-format" },
       json = { "jq", "prettierd" },
       markdown = { "marksman" },
+      zig = { "zigfmt" }, -- kinda unsure about this
       -- javascript = { 'prettierd', 'prettier' },
       -- typescript = { 'prettierd', 'prettier' },
       -- rust = { 'rustfmt' },

@@ -6,11 +6,10 @@
  - [X]  Lsp configurations ( This was tedious task for sure and thanks to the LLMs that are super Coherent and precise)
     - Still there is alot of things I don't really know about and alot of things that in my config still makes less sense due to incomplete knowledge.
  - [X]  Auto Complete ( This was also hard but not that much and I need to know how everything is connected and works seamlessly)
-- [ ] Ai Stuff ( there is no need of this.)
+- [ ] Ai Stuff ( there is no need of this for now.)
 - [X] Markdown and note-taking(holy grail of note-taking in nvim with obsidian doesn't exist there are alot of limitations)
 - [ ] Debugger
 - [x] Lazy Loading for better startup time.
-- The things I have noticed that startup time is gone up by alot and that's obvious at this point with alot of plugins running. I have to decide what to lazy load. There is much imporvement in startup time since I decided to lazy load the plugins.
 ## TODO: 
 - read about Ex-colors plugin for efficient color_scheme.
--
+- read bunch of docs to get good with the nvim because KNOW YOUR TOOLS.

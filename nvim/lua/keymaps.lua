@@ -9,7 +9,7 @@ vim.keymap.set("n", "Q", "<cmd>wq<CR>", { desc = "Save and quit" })
 -- Centering the view while moving half page up/down
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
--- Move
+-- replace (stolen from reddit r/neovim)
 vim.keymap.set(
   "n",
   "<leader>r",
@@ -23,7 +23,7 @@ vim.keymap.set(
 vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
 --Update all plugins with lazy with single keystroke
 vim.keymap.set("n", "<leader>up", "<CMD>Lazy update<CR>", { desc = "Update plugins Lazy" })
--- telescope Keymaps
+-- telescope Keymaps --- I still like and use telescope some times for the specific finds
 vim.keymap.set("n", "<leader>t", function()
   require("telescope.builtin").builtin()
 end, { desc = "[S]earch [S]elect Telescope" })

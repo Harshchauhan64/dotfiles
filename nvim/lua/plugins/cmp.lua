@@ -26,7 +26,7 @@ return {
       ["<Up>"] = { "select_prev", "snippet_backward", "fallback" },
       ["<Down>"] = { "select_next", "snippet_forward", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<C-d>"] = { "show", "show_documentation", "hide_documentation" },
       ["<S-k>"] = { "scroll_documentation_up", "fallback" },
       ["<S-j>"] = { "scroll_documentation_down", "fallback" },
       ["<C-b>"] = { "scroll_documentation_up", "fallback" },
@@ -120,16 +120,30 @@ return {
             return items
           end,
         },
+        cmdline = {
+          min_keyword_length = function(ctx)
+            -- only applies when typing a command, doesn't apply to arguments
+            if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
+              return 2
+            end
+            return 0
+          end,
+        },
       },
-      min_keyword_length = function(ctx)
-        -- only applies when typing a command, doesn't apply to arguments
-        if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
-          return 2
-        end
-        return 0
-      end,
     },
     cmdline = {
+      keymap = {
+        -- recommended, as the default keymap will only show and select the next item
+        ["<Up>"] = { "select_prev" },
+        ["<Down>"] = { "select_next" },
+        ["<Tab>"] = { "show_and_insert", "accept" },
+        ["<CR>"] = { "accept_and_enter", "fallback" },
+      },
+      completion = {
+        menu = {
+          auto_show = true,
+        },
+      },
       sources = function()
         local type = vim.fn.getcmdtype()
         -- Search forward and backward

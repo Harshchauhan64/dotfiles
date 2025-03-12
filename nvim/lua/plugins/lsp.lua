@@ -118,6 +118,18 @@ return {
 
       -- Lua
       local servers = {
+        zls = {
+          settings = {
+            enable_inlay_hints = true,
+            inlay_hints_show_builtin = true,
+            inlay_hints_exclude_single_argument = true,
+            semantic_tokens = true,
+            enable_autofix = true, -- optional: auto-fix on format
+            warn_style = true,
+            highlight_global_var_declarations = true,
+            dangerous_comptime_experiments_do_not_enable = false,
+          },
+        },
         lua_ls = {
           settings = {
             Lua = {

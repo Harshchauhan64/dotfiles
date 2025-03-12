@@ -1,17 +1,17 @@
 return {
   "nvzone/volt", --main dependency
   {
-    "nvzone/typr",
+    "nvzone/typr", -- fun one haven't tired too much
     opts = {},
     cmd = { "Typr", "TyprStats" },
   },
   {
     "nvzone/showkeys",
     cmd = "ShowkeysToggle",
+
     opts = {
       timeout = 1,
-      maxkeys = 3,
-      -- more opts
+      maxkeys = 5,
     },
   },
   { "nvzone/menu", lazy = true, opts = {} },

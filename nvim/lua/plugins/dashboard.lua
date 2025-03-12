@@ -1,3 +1,4 @@
+-- TODO: Migrate to Snacks dashboard and add session + new file
 return {
   enabled = true,
   "goolord/alpha-nvim",
@@ -89,7 +90,7 @@ return {
 
     -- Set menu
     dashboard.section.buttons.val = {
-      dashboard.button("f", "  Find file", ":lua Snacks.picker.files(opts)<CR>"),
+      dashboard.button("f", "  Find file", ":lua Snacks.picker.files(opts)<CR>"), -- TODO: New file shortcut here
       dashboard.button("r", "  Recent files", ":lua Snacks.picker.recent(opts)<CR>"),
       dashboard.button("w", "  Word from files", ":lua Snacks.picker.grep(opts)<CR>"),
       dashboard.button("c", "󰙨  Rat race", ":Leet <CR>"),
@@ -101,21 +102,18 @@ return {
     -- Set footer
     local function footer()
       local stats = require("lazy").stats()
-      local ms = (math.floor(stats.startuptime)) --* 100 + 0.5) / 100)
+      local ms = (math.floor(stats.startuptime)) --((100 + 0.5) / 100)
 
       local loaded_plugins = stats.loaded
       local total_plugins = stats.count
 
-      -- Construct footer string
       return string.format(" eovim loaded %d of %d plugins in %.2fms  ", loaded_plugins, total_plugins, ms)
     end
 
     dashboard.section.footer.val = footer
 
-    -- Send config to alpha
     alpha.setup(dashboard.opts)
 
-    -- Disable folding on alpha buffer
     vim.cmd([[
       autocmd FileType alpha setlocal nofoldenable
     ]])
