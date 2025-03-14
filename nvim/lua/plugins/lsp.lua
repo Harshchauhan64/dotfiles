@@ -13,7 +13,6 @@ return {
   {
     "folke/trouble.nvim",
     opts = {}, -- for default options, refer to the configuration section for custom setup.
-
     cmd = "Trouble",
     specs = {
       "folke/snacks.nvim",
@@ -92,35 +91,16 @@ return {
         },
       })
 
-      config = function(_, opts)
-        local lspconfig = require("lspconfig")
-        for server, config in pairs(opts.servers) do
-          -- passing config.capabilities to blink.cmp merges with the capabilities in your
-          -- `opts[server].capabilities, if you've defined it
-          config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-          lspconfig[server].setup(config)
-        end
-      end
       local lspconfig = require("lspconfig")
       local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-      vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-        pattern = { "*.hl", "hypr*.conf" },
-        callback = function(event)
-          print(string.format("starting hyprls for %s", vim.inspect(event)))
-          vim.lsp.start({
-            name = "hyprlang",
-            cmd = { "hyprls" },
-            root_dir = vim.fn.getcwd(),
-          })
-        end,
-      })
 
       -- Lua
       local servers = {
         zls = {
           settings = {
             enable_inlay_hints = true,
+            enable_build_on_save = true,
+            build_on_save_step = "check",
             inlay_hints_show_builtin = true,
             inlay_hints_exclude_single_argument = true,
             semantic_tokens = true,
@@ -182,6 +162,8 @@ return {
             "--header-insertion=iwyu",
           },
         },
+        pyright = {},
+        marksman = {},
       }
 
       -- Setup all servers with capabilities
@@ -190,11 +172,19 @@ return {
         lspconfig[server].setup(config)
       end
 
-      -- Simple server setups
-      local simple_servers = { "pyright", "zls", "marksman" }
-      for _, server in ipairs(simple_servers) do
-        lspconfig[server].setup({ capabilities = capabilities })
-      end
+      -- Setup hyprls via autocmd
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+        pattern = { "*.hl", "hypr*.conf" },
+        callback = function(event)
+          print(string.format("starting hyprls for %s", vim.inspect(event)))
+          vim.lsp.start({
+            name = "hyprlang",
+            cmd = { "hyprls" },
+            root_dir = vim.fn.getcwd(),
+          })
+        end,
+      })
+
       vim.diagnostic.config({
         virtual_text = {
           prefix = "●",
@@ -228,7 +218,7 @@ return {
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
           vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
           vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-          vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+          vim.keymap.set("n", "<C-g>", vim.lsp.buf.signature_help, opts)
           vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
           vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
           vim.keymap.set("n", "<space>wl", function()
@@ -243,6 +233,8 @@ return {
           end, opts)
         end,
       })
+
+      -- docker specfic keymaps
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "dockerfile", "docker-compose.yml" },
         callback = function()
