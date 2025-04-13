@@ -13,6 +13,7 @@ dirs=("zsh" "vim" "nvim" "tmux" "ghostty")
 
 # Stow each directory
 for dir in "${dirs[@]}"; do
+    if [ -d "$DOTFILES/$dir" ]; then	
     echo "Stowing $dir"
     mkdir -p "$HOME/.config"
     stow -v -t "$HOME/.config" -d "$DOTFILES" "$dir"
@@ -21,3 +22,4 @@ else
 fi
 
 echo "All configs are stowed into $HOME/.config."
+done

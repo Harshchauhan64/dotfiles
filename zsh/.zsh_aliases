@@ -1,77 +1,40 @@
-# Lazygit Ezy access
-alias lg=lazygit
-alias lD=lazydocker
-
-alias n=nvim
-alias nc='nvim leetcode.nvim' 
-# Never miss clear command
-alias c=clear
-alias cl=clear
-alias cls=clear
-alias clr=clear
-
-# fzf fuzzy finding stuff
+alias lg='lazygit'
+alias lD='lazydocker'
+alias n='nvim'
+alias c='clear'
 alias ff='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 alias nf='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
 alias nd='nvim -c Oil'
+alias __='shutdown'
+alias t='tmux attach'
+alias rel='source ~/.zshrc'
+alias ref='exec zsh'
+alias md=mkdir
+alias size='du -sh --block-size=MB'
 
-# Making Life easy aliases
-alias __="sudo shutdown"
-alias t="tmux attach"
-alias reload="source ~/.zshrc"
-alias refresh="exec zsh"
-alias size="du -sh --block-size=MB"
+# Core Listing Aliases 
+alias ls='eza --icons --color=auto --group-directories-first'  
+alias ll='eza --long --icons --color=auto --group-directories-first'  
+alias la='eza --long --all --icons --color=auto --group-directories-first'  
 
-# Basic listings with icons
-alias ls='eza --icons --color=auto --group-directories-first'
-alias ll='eza -l --icons --color=auto --group-directories-first'
-alias la='eza -la --icons --color=auto --group-directories-first'
+# Tree View Aliases 
+alias lt='eza --tree --level=2 --icons --color=auto' 
+alias tree='eza --tree --level=4 --icons --color=auto --group-directories-first' 
 
-# Tree view with icons
-alias lt='eza --tree --level=2 --icons'
-alias tree='eza --tree --level=4 --icons'
+# Sorting-Based Aliases 
+alias lS='eza --long --icons --sort=size --reverse'  
+alias lm='eza --long --icons --sort=modified --reverse --time-style=long-iso'  
+alias lc='eza --long --icons --sort=changed --reverse --time-style=long-iso'  
+alias lT='eza --long --icons --time=created --sort=created --reverse --time-style=long-iso'  
 
-# Sort by file size with icons
-alias lS='eza -l --icons --sort=size --reverse'
-
-# Sort by modification time with icons
-alias lm='eza -l --icons --sort=modified --reverse'
-
-# Show only directories with icons
-alias ld='eza -lD --icons'
-
-# Show extended attributes with icons
-alias lx='eza -l --icons --extended'
-
-# Show Git status with icons
-alias lG='eza -l --icons --git'
-
-# Colorful output with icons
-alias lc='eza -l --icons --color=always --group-directories-first'
-
-# Show files with their full path
-alias lf='eza -l --icons --color=auto --group-directories-first '
-
-# Show hidden files only
-alias l.='eza -ld --icons .*'
-
-# List files sorted by extension
-alias lE='eza -l --icons --sort=extension'
-
-# List files with headers and across
-alias lh='eza -lh --icons --across --group-directories-first'
-
-# List files with long format and show created time
-alias lT='eza -l --icons --time=created --sort=created'
-
-# List files and show only permissions, user, and file name
-alias lp='eza -l --icons --no-filesize --no-time --no-user --no-permissions'
-
-# List files and show octal file permissions
-alias lo='eza -l --icons --octal-permissions --no-permissions'
-
-# List files and show inode number
-alias li='eza -l --icons --inode'
-
-# Grid view
-alias lgg='eza --grid --icons'
+# Specialized Listing Aliases 
+alias ld='eza --long --only-dirs --icons --color=auto'
+alias l.='eza --long --all --icons --color=auto --ignore-glob=".*" | grep "^\."'
+alias lE='eza --long --icons --sort=extension' 
+alias lG='eza --long --icons --git' 
+alias lx='eza --long --icons --extended'  
+alias li='eza --long --icons --inode'  
+alias lo='eza --long --icons --octal-permissions'  
+alias lp='eza --long --icons --no-filesize --no-time --no-user'  
+alias lh='eza --long --header --icons --across --group-directories-first'  
+alias lgg='eza --grid --icons --color=auto --group-directories-first'

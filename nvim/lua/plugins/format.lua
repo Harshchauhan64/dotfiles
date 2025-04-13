@@ -28,14 +28,14 @@ return {
     end,
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "pyright" },
+      -- python = { "pyright" },
       go = { "gofmt", "goimports" },
       cpp = { "clang-format" },
       json = { "jq", "prettierd" },
       markdown = { "marksman" },
       zig = { "zigfmt" }, -- kinda unsure about this
-      -- javascript = { 'prettierd', 'prettier' },
-      -- typescript = { 'prettierd', 'prettier' },
+      javascript = { "prettierd", "prettier" },
+      typescript = { "prettierd", "prettier" },
       -- rust = { 'rustfmt' },
       -- Add more languages and formatters as needed
     },

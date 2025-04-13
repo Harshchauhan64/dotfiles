@@ -1,2 +1,5 @@
-font-size = 20
+font-size = 16
+font-family = JetBrainsMono Nerd Font
 theme = gruvbox-material
+shell-integration-features = "cursor,sudo,title"
+cursor-style = bar

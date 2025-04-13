@@ -87,7 +87,7 @@ return {
           "pyright",
           "lua_ls",
           "marksman",
-          "clangd",
+          -- "clangd",
         },
       })
 

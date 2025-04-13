@@ -7,6 +7,15 @@ return {
     configs.setup({
       ensure_installed = {
         "html",
+        "css",
+        "javascript",
+        "latex",
+        "norg",
+        "scss",
+        "svelte",
+        "tsx",
+        "typst",
+        "vue",
         "lua",
         "vim",
         "regex",

@@ -6,6 +6,7 @@ vim.keymap.set("n", "YY", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 vim.keymap.set("n", "WQ", "<cmd>wqa<CR>", { desc = "Save Everything and quit all" })
 vim.keymap.set("n", "QQ", "<cmd>q!<CR>", { desc = "quit all without saving" })
 vim.keymap.set("n", "Q", "<cmd>wq<CR>", { desc = "Save and quit" })
+vim.keymap.set("i", "<C-BS>", "<C-W>", { noremap = true, silent = true })
 -- Centering the view while moving half page up/down
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })

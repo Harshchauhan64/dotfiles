@@ -1,40 +1,57 @@
-unsetopt BEEP
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# stole from dreamsofautonomy/zensh/blob/main/.zshrc
+#plugin manager
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+#plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light MichaelAquilina/zsh-you-should-use
+zinit light zsh-users/zsh-autosuggestions
+# zinit light jeffreytse/zsh-vi-mode
+zi ice lucid wait has'fzf'
+zi light Aloxaf/fzf-tab
+zi ice lucid wait as'completion' blockf has'wl-copy'
+zi snippet https://github.com/bugaevc/wl-clipboard/blob/master/completions/zsh/_wl-copy
 
-export TERM=screen-256color
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+zi ice lucid wait as'completion' blockf has'wl-paste'
+zi snippet https://github.com/bugaevc/wl-clipboard/blob/master/completions/zsh/_wl-paste
+zi ice lucid wait as'completion' blockf has'rg' mv'rg.zsh -> _rg'
+zi snippet https://github.com/BurntSushi/ripgrep/blob/master/crates/core/flags/complete/rg.zsh
 
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time to update oh-my-zsh
-plugins=(git
-	fzf
-	fzf-tab
-	zsh-autosuggestions
-	zsh-completions
-	command-not-found
-	sudo
-	archlinux)
+#snippets
+zinit snippet OMZL::git.zsh
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::aws
+zinit snippet OMZP::command-not-found
 
-# User configuration
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-
-EDITOR='nvim'
-# For a full list of active aliases, run `alias`.
-# Keybingings
+autoload -Uz compinit && compinit #load completions
+zinit cdreplay -q
+#keybinds
 bindkey -v
+bindkey -M viins '^Y' autosuggest-accept
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^H' backward-kill-word
+bindkey '^[w' kill-region
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-source ~/dotfiles/zsh/.zsh_aliases
-
-# really cool fzf history search one
-fzh() {
-  local selected_command
-  selected_command=$(history | fzf  --height 40% --reverse --query="$LBUFFER" | sed 's/^[ ]*[0-9]\+[ ]*//')
-  if [ -n "$selected_command" ]; then
-    eval "$selected_command"
-  fi
-}
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
