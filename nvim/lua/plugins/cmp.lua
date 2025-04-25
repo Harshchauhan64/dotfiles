@@ -3,7 +3,6 @@ return {
   dependencies = {
     "rafamadriz/friendly-snippets",
     "mikavilpas/blink-ripgrep.nvim",
-
     { "L3MON4D3/LuaSnip", version = "v2.*" },
     "onsails/lspkind.nvim",
   },
@@ -78,7 +77,6 @@ return {
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
-          -- make lazydev completions top priority (see `:h blink.cmp`)
         },
         ripgrep = {
           module = "blink-ripgrep",
@@ -87,42 +85,21 @@ return {
             prefix_min_len = 3,
             context_size = 5,
             max_filesize = "1M",
-            -- Examples:
-            -- - ".git" (default)
-            -- - { ".git", "package.json", ".root" }
             project_root_marker = ".git",
-
-            -- The casing to use for the search in a format that ripgrep
-            -- accepts. Defaults to "--ignore-case". See `rg --help` for all the
-            -- available options ripgrep supports, but you can try
-            -- "--case-sensitive" or "--smart-case".
             search_casing = "--smart-case",
-
-            -- When a result is found for a file whose filetype does not have a
-            -- treesitter parser installed, fall back to regex based highlighting
-            -- that is bundled in Neovim.
             fallback_to_regex_highlighting = true,
-
-            -- Show debug information in `:messages` that can help in
-            -- diagnosing issues with the plugin.
             debug = false,
           },
-          -- (optional) customize how the results are displayed. Many options
-          -- are available - make sure your lua LSP is set up so you get
-          -- autocompletion help
           transform_items = function(_, items)
             for _, item in ipairs(items) do
-              -- example: append a description to easily distinguish rg results
-              item.labelDetails = {
-                description = "(rg)",
-              }
+              item.labelDetails = item.labelDetails or {}
+              item.labelDetails.description = "(rg)"
             end
             return items
           end,
         },
         cmdline = {
           min_keyword_length = function(ctx)
-            -- only applies when typing a command, doesn't apply to arguments
             if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
               return 2
             end
@@ -133,7 +110,6 @@ return {
     },
     cmdline = {
       keymap = {
-        -- recommended, as the default keymap will only show and select the next item
         ["<Up>"] = { "select_prev" },
         ["<Down>"] = { "select_next" },
         ["<Tab>"] = { "show_and_insert", "accept" },
@@ -146,13 +122,9 @@ return {
       },
       sources = function()
         local type = vim.fn.getcmdtype()
-        -- Search forward and backward
         if type == "/" or type == "?" then
           return { "buffer" }
-        end
-
-        -- Commands
-        if type == ":" then
+        elseif type == ":" then
           return { "cmdline" }
         end
         return {}
@@ -162,13 +134,14 @@ return {
       list = {
         selection = {
           preselect = true,
-          auto_insert = true,
+          auto_insert = false,
         },
       },
-      accept = { auto_brackets = { enabled = true } },
+      accept = {
+        auto_brackets = { enabled = true },
+      },
       menu = {
         border = "rounded",
-
         cmdline_position = function()
           if vim.g.ui_cmdline_pos ~= nil then
             local pos = vim.g.ui_cmdline_pos -- (1, 0)-indexed
@@ -229,11 +202,10 @@ return {
         require("luasnip").jump(direction)
       end,
     },
-    -- Experimental signature help support
+
     signature = {
       enabled = true,
       window = { border = "rounded" },
     },
   },
-  opts_extend = { "sources.default" },
 }

@@ -9,7 +9,7 @@ return {
         "html",
         "css",
         "javascript",
-        "latex",
+        -- "latex",
         "norg",
         "scss",
         "svelte",

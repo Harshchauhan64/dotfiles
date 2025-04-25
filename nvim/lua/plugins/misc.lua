@@ -2,7 +2,7 @@ local leet_arg = "leetcode.nvim"
 return {
   { -- testing rust stuff
     "mrcjkb/rustaceanvim",
-    version = "^5",
+    version = "^6",
     lazy = false,
   },
   {

@@ -4,11 +4,14 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
+autoload -Uz compinit
+compinit
 #plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light MichaelAquilina/zsh-you-should-use
 zinit light zsh-users/zsh-autosuggestions
+zinit light zchee/zsh-completions
 # zinit light jeffreytse/zsh-vi-mode
 zi ice lucid wait has'fzf'
 zi light Aloxaf/fzf-tab
@@ -28,20 +31,34 @@ zinit snippet OMZP::archlinux
 zinit snippet OMZP::aws
 zinit snippet OMZP::command-not-found
 
-autoload -Uz compinit && compinit #load completions
 zinit cdreplay -q
 #keybinds
 bindkey -v
 bindkey -M viins '^Y' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-bindkey '^H' backward-kill-word
 bindkey '^[w' kill-region
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+function open_yazi() {
+    y
+    zle reset-prompt
+}
+zle -N open_yazi
+bindkey '^E' open_yazi
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=auto --icons --group-directories-first $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=auto --icons=auto $realpath'
 
 # History
 HISTSIZE=5000

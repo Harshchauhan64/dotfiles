@@ -1,5 +1,13 @@
 font-size = 16
 font-family = JetBrainsMono Nerd Font
-theme = gruvbox-material
+theme = GruvboxDark
 shell-integration-features = "cursor,sudo,title"
+background-blur = true
 cursor-style = bar
+mouse-hide-while-typing = true
+auto-update = check
+# Keybinds
+keybind = super+ctrl+h=goto_split:left
+keybind = super+ctrl+j=goto_split:bottom
+keybind = super+ctrl+k=goto_split:top
+keybind = super+ctrl+l=goto_split:right

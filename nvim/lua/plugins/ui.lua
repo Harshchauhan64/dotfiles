@@ -3,17 +3,6 @@ return {
     "norcalli/nvim-colorizer.lua",
   },
   {
-    "sphamba/smear-cursor.nvim", -- animation idk just for fun
-    enabled = true,
-    opts = {
-      -- Super experimental I dont know what i'm doing
-      stiffness = 0.5, -- 0.6      [0, 1]
-      trailing_stiffness = 0.3, -- 0.3      [0, 1]
-      distance_stop_animating = 0.1, -- 0.1      > 0
-      hide_target_hack = false, -- true     boolean
-    },
-  },
-  {
     "ellisonleao/gruvbox.nvim",
     lazy = true,
     event = "VeryLazy",
@@ -23,15 +12,6 @@ return {
       vim.g.gruvbox_sign_column = "none"
       vim.cmd.colorscheme("gruvbox")
     end,
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    -- priority = 1000,
-    -- config = function()
-    --   -- set colorscheme
-    --   vim.cmd.colorscheme("catppuccin-mocha")
-    -- end,
   },
   {
     "folke/noice.nvim",
@@ -154,7 +134,6 @@ return {
       })
     end,
   },
-  -- TODO : Read docs
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -173,7 +152,7 @@ return {
       },
     },
   },
-  --- NOTE : super temporary i can remove it any time
+  --- NOTE : super temporary
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",

@@ -55,6 +55,7 @@ vim.opt.cursorline = true
 vim.o.background = "dark"
 --vim.cmd.colorscheme 'catppuccin-mocha' moved too ui.lua
 -- Moved to ui for now
+vim.opt.conceallevel = 2
 -- Disable Default providers
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
