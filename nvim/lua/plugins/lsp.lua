@@ -84,8 +84,8 @@ return {
         ensure_installed = {
           "gopls",
           "zls",
-          "pyright",
           "lua_ls",
+          "ruff",
           -- "clangd",
         },
       })
@@ -98,6 +98,7 @@ return {
         zls = {
           settings = {
             enable_inlay_hints = true,
+            enable_snippets = true,
             enable_build_on_save = true,
             build_on_save_step = "check",
             inlay_hints_show_builtin = true,
@@ -161,8 +162,33 @@ return {
             "--header-insertion=iwyu",
           },
         },
-        pyright = {},
-        marksman = {},
+        ruff = {
+          cmd = { "ruff", "server" }, -- Use Ruff's LSP server
+          filetypes = { "python" },
+          settings = {
+            -- Ruff LSP settings (can be overridden by pyproject.toml or .ruff.toml)
+            lint = {
+              enable = true,
+              select = { "E", "F", "I", "W", "PL", "TCH" }, -- Common lint rules: PEP 8, pyflakes, isort, warnings, pylint, type checking
+              ignore = { "E501" },                          -- Ignore line length (formatting handles it)
+              fixable = { "E", "F", "I" },                  -- Auto-fix safe issues
+              preview = true,                               -- Enable preview rules for newer Ruff features
+            },
+            format = {
+              enable = true,
+              lineLength = 88, -- Match black's default
+              preview = true,  -- Use Ruff's formatter with preview features
+            },
+            -- Path to project-specific config (optional, Ruff auto-detects pyproject.toml or .ruff.toml)
+            configuration = vim.fn.expand("~/.config/ruff/pyproject.toml"), -- Adjust if you have a global config
+          },
+          init_options = {
+            settings = {
+              -- Additional initialization options for Ruff LSP
+              args = { "--config", vim.fn.expand("~/.config/ruff/pyproject.toml") }, -- Optional: specify config file
+            },
+          },
+        },
       }
 
       -- Setup all servers with capabilities

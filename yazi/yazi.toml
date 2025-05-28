@@ -1,14 +1,10 @@
 [manager]
 show_hidden = true
 show_symlink = true
-prepend_keymap = [
-    { on = "l", run  = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
-]
 [opener]
 edit = [ {run = 'nvim "$@"', block = true, for = "unix"  }]
-
+play = [ { run = 'vlc "$@"', desc = "VLC", orphan = true }]
 [plugin]
 prepend_previewers = [
-    # { name = "*.md", run = "test" },
-    { name = "*.md", run  = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'},
+    { name = "*.md", run  = 'glow'},
 ]

@@ -11,6 +11,7 @@ alias rel='source ~/.zshrc'
 alias ref='exec zsh'
 alias md=mkdir
 alias wman=wikiman
+alias evil=hx
 # I accidentally nuked my home dir :(
 alias rm="rm -Ii"
 alias size='du -sh --block-size=MB'

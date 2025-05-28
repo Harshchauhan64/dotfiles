@@ -1,4 +1,4 @@
-font-size = 16
+font-size = 15
 font-family = JetBrainsMono Nerd Font
 theme = GruvboxDark
 shell-integration-features = "cursor,sudo,title"
