@@ -1,6 +1,5 @@
 theme = "gruvbox"
 [editor]
-evil = true
 line-number = "relative"
 cursorline = true
 color-modes = true
@@ -15,4 +14,3 @@ hidden = false
 [keys.normal]
 W = ":w"
 x = "delete_selection"
-V = "extend_line"

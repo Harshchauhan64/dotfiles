@@ -1,5 +1,12 @@
 local leet_arg = "leetcode.nvim"
 return {
+  {
+    'Wansmer/symbol-usage.nvim',
+    event = 'LspAttach',
+    config = function()
+      require('symbol-usage').setup()
+    end
+  },
   { -- testing rust stuff
     "mrcjkb/rustaceanvim",
     version = "^6",
@@ -48,7 +55,7 @@ return {
       { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
   },
-  { "meznaric/key-analyzer.nvim", command = "KeyAnalyzer", opts = {} },
+  { "meznaric/key-analyzer.nvim",  command = "KeyAnalyzer",               opts = {} },
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -91,9 +98,9 @@ return {
       })
     end,
   },
-  { "wakatime/vim-wakatime", lazy = false },
-  { "tpope/vim-sleuth", event = { "BufReadPre", "BufNewFile" } }, -- Detect tabstop and shiftwidth automatically
-  { "nvim-tree/nvim-web-devicons", lazy = true, enabled = vim.g.have_nerd_font, opts = true },
+  { "wakatime/vim-wakatime",       lazy = false },
+  { "tpope/vim-sleuth",            event = { "BufReadPre", "BufNewFile" } }, -- Detect tabstop and shiftwidth automatically
+  { "nvim-tree/nvim-web-devicons", lazy = true,                           enabled = vim.g.have_nerd_font, opts = true },
   {
     "folke/todo-comments.nvim",
     event = { "BufReadPost", "BufNewFile" },
@@ -127,10 +134,10 @@ return {
       "TmuxNavigatePrevious",
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
